@@ -1,0 +1,40 @@
+.window {
+    border: 3px solid #dddfe6;
+    border-radius: 10px;
+    width: 340px;
+    height: 427px;
+    position: relative;
+    top: 80px;
+    left: 540px;
+    padding: 48px 48px;
+}
+
+.window input {
+    border: 2px solid #dddfe6;
+    margin-bottom: 20px;
+    height: 35px;
+    width: 300px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.window #window_btn {
+    height: 60px;
+    width: 130px;
+    font-size: 22px;
+    font-weight: bold;
+    position: relative;
+    left: 112px;
+    border: 0 solid #dddfe6;
+    border-radius: 5px;
+}
+
+.window #window_btn:hover {
+    background-color: #dddfe6;
+}
+
+.window #window_p {
+    font-size: 12px;
+    margin-top: -15px;
+    color: red;
+}

@@ -9,16 +9,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        //登陆拦截器
-        registry
-                .addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/**")
-                .excludePathPatterns("/static/pages/demo.html",
-                        "/login"
-                )
-                .order(1);
-
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        //登陆拦截器
+////        registry
+////                .addInterceptor(new LoginInterceptor())
+////                .addPathPatterns("/**")
+////                .excludePathPatterns("/static/pages/demo.html",
+////                        "/login"
+////                )
+////                .order(1);
+//
+//    }
+//}
 }

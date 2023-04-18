@@ -1,20 +1,32 @@
 package com.example.foodordersystem.controller;
 
-import com.example.foodordersystem.controller.utils.R;
-import com.example.foodordersystem.pojo.LoginCode;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.foodordersystem.Service.LoginServer;
+import com.example.foodordersystem.pojo.Test2;
+import com.example.foodordersystem.pojo.sh;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/login")
 public class LoginController {
-    @RequestMapping
-    public R login(@RequestBody LoginCode loginCode) {
-        System.out.println(loginCode.getCode());
-        System.out.println(loginCode.getUserName());
-        System.out.println(loginCode.getPassword());
-        return new R(true,"登录成功");
-
+    @Resource
+    private LoginServer loginServer;
+    @PostMapping("/L")
+    public Test2 login(@RequestBody Test2 test2) {
+        System.out.println(test2);
+        System.out.println(test2.getUserName()+","+test2.getPassword());
+        return test2;
     }
+
+//    @GetMapping("/SS")
+//    public String ss() throws SQLException, ClassNotFoundException, JsonProcessingException {
+//        System.out.println("执行了");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        return objectMapper.writeValueAsString(test.testSelectMany());
+//    }
 }

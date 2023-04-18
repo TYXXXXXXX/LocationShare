@@ -21,6 +21,11 @@
     from users
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+  <select id="searchUserName" resultType="java.lang.String">
+    select `password`
+    from users
+    where user_name = #{userName}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     delete from users
