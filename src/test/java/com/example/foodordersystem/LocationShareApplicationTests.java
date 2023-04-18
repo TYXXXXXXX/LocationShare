@@ -53,9 +53,10 @@ class LocationShareApplicationTests {
         String sql2 = "SELECT abk FROM `timu`";
         PreparedStatement pst = connection.prepareStatement(sql2);
         ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
-            System.out.println(rs.getString(1));
-        }
+        rs.next();
+        rs.next();
+        rs.next();
+        System.out.println(rs.getString(1));
         pst.close();
         connection.close();
 
