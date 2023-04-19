@@ -1,6 +1,6 @@
 package com.example.foodordersystem.controller;
 
-import com.example.foodordersystem.Service.LoginServer;
+import com.example.foodordersystem.mapper.UserLogin;
 import com.example.foodordersystem.pojo.Test2;
 import com.example.foodordersystem.pojo.sh;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,9 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/login")
 public class LoginController {
-    @Resource
-    private LoginServer loginServer;
-    @PostMapping("/L")
+     private final UserLogin login = new UserLogin();
+    @PostMapping("/user")
     public Test2 login(@RequestBody Test2 test2) {
         System.out.println(test2);
         System.out.println(test2.getUserName()+","+test2.getPassword());

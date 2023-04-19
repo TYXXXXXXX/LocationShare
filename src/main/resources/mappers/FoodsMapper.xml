@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.foodordersystem.mapper.FoodsMapper">
+  <resultMap id="BaseResultMap" type="com.example.foodordersystem.pojo.Foods">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <id column="food_id" jdbcType="INTEGER" property="foodId" />
+    <result column="food_name" jdbcType="VARCHAR" property="foodName" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.foodordersystem.pojo.Foods">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <result column="picture" jdbcType="LONGVARBINARY" property="picture" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    food_id, food_name, price, description, merchant_id, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from foods
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from foods
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.foodordersystem.pojo.Foods">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <selectKey keyProperty="foodId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into foods (food_name, price, description, 
+      merchant_id, create_time, picture
+      )
+    values (#{foodName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, 
+      #{merchantId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{picture,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.foodordersystem.pojo.Foods">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <selectKey keyProperty="foodId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into foods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="foodName != null">
+        food_name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="foodName != null">
+        #{foodName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.foodordersystem.pojo.Foods">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update foods
+    <set>
+      <if test="foodName != null">
+        food_name = #{foodName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.foodordersystem.pojo.Foods">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update foods
+    set food_name = #{foodName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      description = #{description,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      picture = #{picture,jdbcType=LONGVARBINARY}
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.foodordersystem.pojo.Foods">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update foods
+    set food_name = #{foodName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      description = #{description,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </update>
+</mapper>
