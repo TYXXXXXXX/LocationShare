@@ -1,5 +1,6 @@
 package com.example.foodordersystem.interceptor;
 
+import com.example.foodordersystem.mapper.UserLogin;
 import com.example.foodordersystem.pojo.Users;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
+    private final UserLogin login = new UserLogin();
 
     /***
      * 在请求处理之前进行调用(Controller方法调用之前)
@@ -17,17 +19,14 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("执行了拦截器的preHandle方法");
         try {
             HttpSession session = request.getSession();
+            System.out.println(request.getContextPath());
             //统一拦截（查询当前session是否存在user）(这里user会在每次登录成功后，写入session)
             Users user = (Users) session.getAttribute("user");
             System.out.println(user);
             if (user != null) {
                 return true;
             }
-//            response.sendRedirect(request.getContextPath() + "login");
-            System.out.println(request.getContextPath());
-            System.out.println(request.getSession());
-            System.out.println(request.getContextPath());
-            response.sendRedirect("/static/pages/demo.html");
+            response.sendRedirect("/static/pages/dingcan/Login/login_user.html");
         } catch (Exception e) {
             e.printStackTrace();
         }

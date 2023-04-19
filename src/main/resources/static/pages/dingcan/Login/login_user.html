@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客官，您上座</title>
+    <link rel="stylesheet" href="./Takeaway_login.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+
+
+
+</head>
+
+<body>
+<div class="window">
+    <h1>欢迎您加入我们</h1>
+    <input type="text" placeholder="请输入用户名" id="username" value=""><br>
+    <input type="password" placeholder="请输入密码" id="password" value=""><br>
+    <p id="window_p1">没有账号？点击注册</p> <button id="reg">注册</button><br>
+    <button id="window_btn2">登录</button>
+
+
+
+    <button id="test">test</button>
+
+
+
+</div>
+<script type="module" src="./Takeaway_login.js"></script>
+</body>
+
+</html>
+<script>
+    $("#reg").click(function () {
+        window.open('http://localhost/static/pages/dingcan/Login/Takeaway_login.html')
+    })
+    $("#window_btn2").click(function () {
+        // 发送AJAX请求获取数据
+        $.ajax({
+            url: "http://localhost/user/search/"+$('#tab_search').val().trim(),
+            dataType: "json",
+            data: {
+                term: request.term
+            },
+            success: function(data) {
+                // 处理返回的数据
+                response(data);
+            }
+        });
+    })
+    $("#test").click(function () {
+        $.ajax({
+            url: "http://localhost/user/searchFood/1",
+            dataType: "json",
+            success: function(data) {
+                // 处理返回的数据
+                console.log(data)
+            }
+        });
+    })
+</script>

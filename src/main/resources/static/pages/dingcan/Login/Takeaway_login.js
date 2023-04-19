@@ -11,12 +11,10 @@
 // const express = require("express");
 
 $('#window_btn').on('click', function () {
-    console.log("6666666666666666666")
     var userName = $('#username').val().trim().toString();
     var password = $('#password').val().trim().toString();
     var passwordAgain = $('#passwordagain').val().trim().toString();
     var number = $('#number').val().trim().toString();
-    console.log("##########")
     const str = {
         userName: userName,
         password: password,
@@ -77,7 +75,7 @@ function url() {
     var str = url.substr(index + 1, url.length)
     console.log(str);
     // pandu判断，是从用户界面进入的,haishi还是从商家界面进入的
-    if (str == "shangjia=true") {
+    if (str === "shangjia=true") {
         // 这是商家
         window.location.href = "manage\manage.html";
     }
