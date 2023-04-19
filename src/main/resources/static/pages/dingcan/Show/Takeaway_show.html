@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta charset="utf-8">
+        <!--使⽤X-UA-Compatible来设置IE浏览器兼容模式 最新的渲染模式-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>客官，里面请</title>
+        <!-- 载⼊Bootstrap 的css -->
+
+        <link rel="stylesheet" href="../font/iconfont.css">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="Takeaway_show.css">
+        <link rel="stylesheet" href="../font/iconfont.css">
+        <script src="../Show/Takeaway_show.js"></script>
+    </head>
+</head>
+
+<body>
+    <!-- 大页面 -->
+    <div class="main">
+        <!-- 顶部导航栏 -->
+        <div class="tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <span><img src="../images/touxiang.png" alt=""></span>
+                    </div>
+                    <div class="col-md-4">
+                        <h3><a href="Takeaway_show.html">永昕外卖</a></h3>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2" id="tab_button">
+                        <h4><a href="Takeaway_show.html">首页</a></h4>
+                    </div>
+                    <div class="col-md-2" id="tab_button">
+                        <h4><a href="https://www.foodwake.com/category/food-class/0">营养表</a></h4>
+                    </div>
+                    <div class="col-md-2" id="tab_button">
+                        <h4><a href="javascript:;">联系电话</a></h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 中间主页面展示 -->
+        <div class="center">
+            <!-- 商家入驻中心 -->
+            <!-- <div onclick="window.open('www.baidu.com','_self')"  ></div> -->
+            <a href="../Login/Takeaway_login.html?shangjia=true">
+                <div id="shangjia">
+                    <span class="iconfont icon-shangjia"></span>
+                    <div id="shangjia_ruzhu">
+                        <h3>我要入驻</h3>
+                        <h5>后台管理，代理获取</h5>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 用户点餐链接窗口 -->
+            <a href="../Details/Takeaway_commodity.html">
+                <div id="user">
+                    <span class="iconfont icon-tableware"></span>
+                    <div id="user_ruzhu">
+                        <h3>我是顾客，我要点餐</h3>
+                        <h5>各种美食，应有尽有</h5>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</body>
+
+</html>
