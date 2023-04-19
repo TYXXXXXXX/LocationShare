@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* @font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.woff2?t=1681712071512') format('woff2'),
+        url('iconfont.woff?t=1681712071512') format('woff'),
+        url('iconfont.ttf?t=1681712071512') format('truetype');
+} */
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:visited,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+/* ############################################################################# */
+
+.container-fluid {
+    background-color: #ffffff;
+    /* background-color: #f3f3f3; */
+    height: 1000px;
+}
+
+.tab {
+    width: 100%;
+    height: 63px;
+    border-bottom: 2px solid #e3e3e3;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    background-color: #ffffff;
+}
+
+.tab .tab_title {
+    float: left;
+    padding: 11px 80px;
+    margin-right: 0px;
+    /* font-weight: bold; */
+    border-right: 2px solid #e3e3e3;
+}
+
+.tab .form-group {
+    width: 60%;
+    float: left;
+    margin-left: 20px;
+    padding: 11px 39px;
+}
+
+.tab .form-group #exampleInputEmail1 {
+    /* width: 75%; */
+    /* float: left; */
+    background-color: #ececec;
+    height: 40px;
+}
+
+.tab .name {
+    padding: 11px 39px;
+}
+
+.tab .name #manager_name {
+    font-size: 19px;
+}
+
+
+.tab .logout {
+    position: relative;
+}
+
+.tab .name #manager_name {
+    position: relative;
+}
+
+.tab #user {
+    display: none;
+    width: 160px;
+    height: 96px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50px;
+    left: -38px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+
+
+.tab #name_logout,
+.tab #setting {
+    float: left;
+    font-size: 16px;
+    padding: 11px 52px;
+}
+
+.tab #setting:hover,
+.tab #name_logout:hover {
+    background-color: #eaeaf1;
+    /* padding: 17px 50px; */
+
+}
+
+/* #####################资料栏 ##########*/
+#Information {
+    display: none;
+    /* float: left; */
+    z-index: 90;
+    position: absolute;
+    top: 150px;
+    left: 900px;
+    background-color: #ffffff;
+    border-right: 2px solid #ececec;
+    width: 370px;
+    height: 430px;
+    padding: 26px 26px;
+}
+
+#Information #Information_btn {
+    margin: 15px 123px;
+}
+
+#Information .form-control {
+    margin: 3px 1px;
+}
+
+/* #############左侧样式 ####################*/
+.left_box {
+    width: 234px;
+    height: 100%;
+    border-right: 2px solid #ececec;
+    float: left;
+    margin-top: 63px;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    background-color: #ffffff;
+
+}
+
+.left_box ul li:first-child {
+    color: #6083ff;
+}
+
+.left_box ul li:hover {
+    color: #6083ff;
+}
+
+.left_box ul li .iconfont {
+    float: left;
+    padding: 0 20px;
+
+}
+
+/* .left_box ul li a:active,
+.left_box ul li a:visited,
+.left_box ul li a:hover {
+    text-decoration: none;
+    color: #6083ff;
+} */
+
+.left_box ul li {
+    font-size: 15px;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 2px solid #ececec;
+    margin: 0;
+}
+
+/* 1111111111111111111##右侧详细展示栏 #########*/
+.right_box {
+    float: left;
+    background-color: #f3f3f3;
+    width: 85%;
+    height: 100%;
+    margin-top: 63px;
+    margin-left: 234px;
+    padding: 10px 30px;
+}
+
+
+#sum {
+    display: block;
+}
+
+#sum h1 {
+    margin: 20px 20px;
+}
+
+#cuisine,
+#orders,
+#add {
+    display: none;
+}
+
+.right_box #sum .total {
+    border: 2px solid #e3e3e3;
+    width: 585px;
+    height: 135px;
+    background-color: #ffffff;
+
+}
+
+.right_box #sum .total h3 {
+    padding: 0px 0 10px 10px;
+    border-bottom: 2px solid #e3e3e3;
+}
+
+.right_box #sum .total h4 {
+    display: inline-block;
+    margin-top: 0;
+    padding: 17px 16px;
+    /* height: 50px; */
+}
+
+.right_box #sum .total #todayData,
+.right_box #sum .total #todayTotal {
+    border-right: 2px solid #e3e3e3;
+}
+
+.right_box #cuisine #tbcuisine img {
+    width: 60px;
+}
+
+.right_box #cuisine #tbcuisine {
+    font-size: 18px;
+
+}

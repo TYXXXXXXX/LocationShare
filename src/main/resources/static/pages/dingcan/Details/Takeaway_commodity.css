@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* @font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+        url('iconfont.woff') format('woff'),
+        url('iconfont.ttf') format('truetype'),
+        url('iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+} */
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+
+.tab {
+    height: 80px;
+    background-color: #e8eaed;
+    border-radius: 10px;
+}
+
+.tab .search {
+    margin-top: 20px;
+}
+
+.tab #tab_search {
+    height: 30px;
+    width: 200px;
+}
+
+.tab .tab_login #tab_login_btn {
+    display: block;
+    float: right;
+    height: 50px;
+    width: 100px;
+    font-size: 17px;
+    background-color: #969696;
+    border: 2px solid #e8eaed;
+    border-radius: 10px;
+}
+
+
+/*############################ zhongjian中间展示的页面 */
+.show {
+    height: 500px;
+    background-color: #e8eaed;
+    margin-top: 30px;
+}
+
+.left {
+    width: 120px;
+    height: 100%;
+    float: left;
+}
+
+.show .left ul {
+    /* float: left; */
+    display: block;
+}
+
+.show .left li {
+    width: 80px;
+    height: 40px;
+    font-size: 18px;
+    padding: 6px 19px;
+}
+
+.show .left li:hover {
+    background-color: aliceblue;
+}
+
+.show .main_show {
+    float: left;
+}
+
+.show .main_show img {
+    width: 650px;
+
+}
+
+.show .right_show {
+    float: left;
+    width: 335px;
+    margin: 1px 5px;
+}
+
+.show .right_show img {
+    width: 100%;
+    float: left;
+}
+
+
+
+
+
+
+.shangjia {
+    margin-top: 30px;
+    height: 500px;
+    background-color: #e8eaed;
+    border-radius: 2px;
+    /* display: flex; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.shangjia .shangjiabox {
+    width: 370px;
+    height: 200px;
+    border: 1px solid #656464;
+    margin: 17px 10px;
+
+}
+
+.shangjia .shangjiabox div {
+    display: inline-block;
+}
+
+
+
+.shangjia .shangjiabox div:first-child {
+    width: 100px;
+}
+
+.shangjia .shangjiabox div strong {
+    font-size: 18px;
+    position: relative;
+    top: -37px;
+    left: 10px;
+
+}
+
+.shangjia .shangjiabox img {
+    width: 150px;
+}

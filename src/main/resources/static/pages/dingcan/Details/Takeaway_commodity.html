@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>永昕外卖</title>
+    <link rel="stylesheet" href="Takeaway_commodity.css">
+    <script src="Takeaway_commodity.js"></script>
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="tab container">
+        <div class="row">
+            <div class="col-md-2">
+                <h2>永昕外卖</h2>
+            </div>
+            <!-- 搜索框 -->
+            <div class="search col-md-3">
+                <input id="tab_search " class="form-control" type="text" value="" placeholder="请输入店名和食物名称">
+            </div>
+            <!-- 搜索按钮 -->
+            <div class=" search col-md-1">
+                <button type="submit" class="btn btn-default">搜索</button>
+            </div>
+            <!-- 友情赞助 -->
+            <div class="col-md-1">
+                <h3>赞助</h3>
+            </div>
+            <!-- 用户登录按钮 -->
+            <div class="tab_login col-md-3">
+                <button id="tab_login_btn" onclick="window.open('../Login/Takeaway_login.html?user=true')">
+                    立即登录
+                </button>
+            </div>
+            <!-- 登陆成功后展示的用户名 -->
+            <div class="tab_username col-md-1">
+                <h4>用户名</h4>
+            </div>
+
+        </div>
+
+
+        <!-- 展示页面 -->
+        <div class="row show">
+            <!-- 左侧 -->
+            <div class="left">
+                <ul>
+                    <li>推荐</li>
+                    <li>零食</li>
+                    <li>店家</li>
+                    <li>水果</li>
+                    <li>正餐</li>
+                    <li>饮品</li>
+                    <li>优惠</li>
+
+                </ul>
+            </div>
+            <!-- 中央图片展示 -->
+            <div class="main_show">
+                <img src="../images/main-show.jpg" alt="">
+            </div>
+            <!-- 右侧图片展示 -->
+            <div class="right_show">
+                <img src="../images/right1.jpg" alt="">
+                <img src="../images/right2.jpg" alt="">
+            </div>
+        </div>
+
+
+
+        <!-- 商家页面 -->
+        <h3>商家：</h3>
+        <div class="shangjia row">
+            <div class="shangjiabox">
+                <img src="../images/fuqifeipian.png" alt="" class="img-rounded">
+                <div>
+                    <strong>店家名称：商家</strong>
+                </div>
+                <div>
+                    <ul>
+                        <li>15元起送</li>
+                        <li>好评如潮</li>
+                        <li>“很划算”</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="shangjiabox"></div>
+            <div class="shangjiabox"></div>
+            <div class="shangjiabox"></div>
+            <div class="shangjiabox"></div>
+            <div class="shangjiabox"></div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
