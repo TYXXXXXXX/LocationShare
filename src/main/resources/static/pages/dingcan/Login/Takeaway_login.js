@@ -29,6 +29,7 @@ $('#window_btn').on('click', function () {
         // window.location.href = window.location.href;
     } else {
         again();
+        console.log(1111)
     }
     console.log("###############")
 
