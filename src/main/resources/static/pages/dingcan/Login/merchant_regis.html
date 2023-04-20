@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎加入</title>
+    <link rel="stylesheet" href="./Takeaway_login.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+
+
+</head>
+
+<body>
+<div class="window">
+    <h1>欢迎您加入我们</h1>
+    <input type="text" placeholder="请输入用户名" id="username" value=""><br>
+    <p id="window_p" style="display: none">该用户名已经存在</p>
+    <input type="text" placeholder="请输入店名" id="dianName" value=""><br>
+    <input type="password" placeholder="请输入密码" id="password" value=""><br>
+    <input type="password" placeholder="请再一次输入密码" id="passwordagain" value=""><br>
+    <input type="number" placeholder="请输入手机号" id="number" value=""><br>
+    <!--        <p id="window_p">未注册用户将自动注册</p><br>-->
+    <button id="window_btn">注册</button>
+
+</div>
+<!--<script type="module" src="./Takeaway_login.js"></script>-->
+</body>
+
+</html>
+<script>
+    // 获取元素
+    // let username = document.getElementById('username');
+    // let password = document.getElementById('password');
+    // let passwordagain = document.getElementById('passwordagain');
+    // let number = document.getElementById('passwordagain');
+    // let btn = document.querySelector('#window_btn');
+    // import { createRequire } from 'module';
+    // const require = createRequire(import.meta.url);
+
+    // const { json } = require("express");
+    // const express = require("express");
+
+    // $('#window_btn').on('click', function () {
+    //     var userName = $('#username').val().trim().toString();
+    //     var password = $('#password').val().trim().toString();
+    //     var passwordAgain = $('#passwordagain').val().trim().toString();
+    //     var number = $('#number').val().trim().toString();
+    //     const str = {
+    //         userName: userName,
+    //         password: password,
+    //         passwordAgain: passwordAgain,
+    //         number: number,
+    //     }
+    //     console.log(str.name);
+    //     if (userName.length <= 0 || password.length <= 0 || passwordAgain.length <= 0 || number.length <= 0) {
+    //         alert('请输入完整信息');
+    //         // window.location.href = window.location.href;
+    //     } else {
+    //         again();
+    //         console.log(1111)
+    //     }
+    //     //
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open('POST', 'http://localhost/login/L');
+    //     console.log("##############")
+    //     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+    //     xhr.send(JSON.stringify(str));
+    //     xhr.onreadystatechange = function () {
+    //         if (xhr.readyState === 4) {
+    //             if (xhr.status === 200) {
+    //                 console.log(xhr.responseText);
+    //             }
+    //         }
+    //     }
+    // });
+    //失去焦点判断用户是否存在
+    let isSet = false
+    $("#username").blur(function () {
+        console.log("失去焦点")
+        if (getUser()[0] !== getUser()[0].trim() || getUser()[0] === "") alert("输入不能有空格")
+        $.ajax({
+            url: "http://localhost:8080/login/isSet2/" + getUser()[0],
+            type: "GET",
+            success: function (result) {
+                if (!result.flag) {
+                    noDisplay()
+                } else {
+                    isSet = true;
+                    $("#window_p").css("display", "none")
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    })
+    // $("#number").blur(function () {
+    //   let isTrue = isRule()
+    //   if(isTrue && isSet){
+    //     show()
+    //     $.ajax({
+    //       url: "http://localhost:8080/login/isSet2/" + getUser()[0],
+    //       type: "GET",
+    //       success: function (result) {
+    //         if(!result.flag) noDisplay()
+    //       },
+    //       error: function (error) {
+    //         console.log(error);
+    //       }
+    //     });
+    //   }
+    // })
+
+
+    const noDisplay = () => {
+        $("#window_p").css("display", "block")
+    }
+    const show = () => {
+        $("#window_btn").css("opacity", "1").css("pointer-events", "auto");
+    }
+
+    const isRule = () => {
+        if (getUser()[0] !== getUser()[0].trim()
+            || getUser()[1] !== getUser()[1].trim()
+            || getUser()[2] !== getUser()[2].trim()
+            || getUser()[3] !== getUser()[3].trim()) {
+            alert("输入不能有空格")
+            return false
+        }
+        if (getUser()[3] !== getUser()[2]) {
+            alert("密码不一致")
+            return false
+        }
+        return true
+    }
+
+    const getUser = () => {
+        return [$('#username').val().toString(), $("#dianName").val().toString(), $('#password').val().toString()
+            , $("#passwordagain").val().toString(), $("#number").val().toString()]
+    }
+
+    //注册
+    $("#window_btn").click(function () {
+        if (isSet && isRule()) {
+            const userM = {
+                userName: getUser()[0],
+                merchantName: getUser()[1],
+                password: getUser()[2],
+                phone: getUser()[4],
+                createTime: null
+            }
+            // 发送 Ajax 请求
+            $.ajax({
+                url: "/login/R2", // 请求的 url，通常是后端接口地址
+                type: "POST", // 请求的方法，根据业务需求选择 GET、POST、PUT、DELETE 等
+                contentType: "application/json;charset=utf-8", // 请求体的类型，指定为 JSON
+                data: JSON.stringify(userM), // 将要发送的数据转换成 JSON 格式
+                success: function (result) {
+                    // 请求成功的回调函数
+                    if (result.flag) {
+                        alert(result.msg)
+                        let timer = setTimeout(function () {
+                            window.open("http://localhost:8080/static/pages/dingcan/manage/manage.html", '_self')
+                            clearTimeout(timer)
+                        }, 1500)
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // 请求失败的回调函数
+                    console.log(textStatus + ": " + errorThrown);
+                }
+            });
+        } else alert("密码不一致")
+
+    })
+
+    //}
+    // // 判断第一次密码是不是和第二次相同的密码
+    // function again() {
+    //   var password = $('#password').val().trim();
+    //   var passwordagain = $('#passwordagain').val().trim();
+    //   // console.log(password);
+    //   // console.log(passwordagain);
+    //   if (password === passwordagain) {
+    //     // console.log('相同');
+    //   } else {
+    //     alert('请两次输入相同的密码');
+    //     // window.location.href = window.location.href;
+    //   }
+    // }
+
+    // 判断手机号是不是数字
+    // function numb() {
+    //     var number = $('#number').val().trim();
+    //     console.log(number);
+    // }
+
+
+    // function url() {
+    //   // 打印url
+    //   var url = window.location.href;
+    //   var index = url.indexOf("?");
+    //   var str = url.substr(index + 1, url.length)
+    //   console.log(str);
+    //   // pandu判断，是从用户界面进入的,haishi还是从商家界面进入的
+    //   if (str === "shangjia=true") {
+    //     // 这是商家
+    //     window.location.href = "manage\manage.html";
+    //   }
+    // }
+
+</script>

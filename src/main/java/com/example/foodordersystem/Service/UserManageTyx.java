@@ -1,28 +1,22 @@
 package com.example.foodordersystem.Service;
 
 import com.example.foodordersystem.mapper.utils.Connect;
+import com.example.foodordersystem.pojo.Merchants;
+import com.example.foodordersystem.pojo.User;
 import com.example.foodordersystem.pojo.Users;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserManageTyx {
-    private final Connection connection = Connect.getDriver();
 
-    public UserManageTyx() throws SQLException, ClassNotFoundException {
+    public UserManageTyx() {
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserManageTyx userManageTyx = new UserManageTyx();
-        userManageTyx.updateName("Tyx", 1);
-//        userManageTyx.updatePassword("123","12345",1);
-        userManageTyx.close();
-    }
 
-    private boolean update(String param, Integer id) throws SQLException {
+    private boolean update(String param, Integer id) throws SQLException, ClassNotFoundException {
         //1.代表 2.提问 3.
+        final Connection connection = Connect.getDriver();
+
         String sql = "UPDATE users SET user_name = ? where user_id = ?";
         PreparedStatement pst = connection.prepareStatement(sql);
         pst.setString(1, param);
@@ -39,12 +33,15 @@ public class UserManageTyx {
         }
 
     }
-    public boolean updateName(String name, Integer id) throws SQLException {
+    public boolean updateName(String name, Integer id) throws SQLException, ClassNotFoundException {
        return update(name,id);
     }
 
-    public boolean updatePassword (String oldPassword, String newPassword, Integer id) throws SQLException {
+    public boolean updatePassword (String oldPassword, String newPassword, Integer id) throws SQLException,
+            ClassNotFoundException {
         //输入为空直接返回false
+        final Connection connection = Connect.getDriver();
+
         if (oldPassword == null || newPassword == null) return false;
         //根据id查询password
         String selectPassword = "select `password` from users where user_id = ?";
@@ -75,21 +72,41 @@ public class UserManageTyx {
         return false;
     }
 
-    public Users selectOne(String name) throws SQLException {
-        String sql = "select * from users";
+    public User selectOne(String name) throws SQLException, ClassNotFoundException {
+         final Connection connection = Connect.getDriver();
+
+        String sql = "select * from users WHERE user_name = ?";
         PreparedStatement pst = connection.prepareStatement(sql);
+        pst.setString(1,name);
         ResultSet rs = pst.executeQuery();
         rs.next();
+        User user = new User(rs.getInt(1),rs.getString(2)
+                ,rs.getString(3),rs.getString(4),rs.getString(5)
+                ,rs.getTimestamp(6));
         rs.close();
         pst.close();
         connection.close();
-        return new Users(rs.getInt(1),rs.getString(2)
-        ,rs.getString(3),rs.getString(4),rs.getString(5)
-        ,rs.getDate(6));
+        return user;
 
     }
 
-    public void close() throws SQLException {
+    public Merchants selectOneM(String name) throws SQLException, ClassNotFoundException {
+        final Connection connection = Connect.getDriver();
+        String sql = "select * from merchants where user_name = ?";
+        PreparedStatement pst = connection.prepareStatement(sql);
+        pst.setString(1,name);
+        ResultSet rs = pst.executeQuery();
+        rs.next();
+        Merchants merchants = new Merchants(rs.getInt(1),rs.getString(2)
+        ,rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)
+        ,new Timestamp(System.currentTimeMillis()),rs.getString(8),rs.getString(9));
+        rs.close();
+        pst.close();
         connection.close();
+        return merchants;
+
+
     }
+
+
 }

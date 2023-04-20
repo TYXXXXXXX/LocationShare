@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.foodordersystem.mapper.MerchantsMapper">
+  <resultMap id="BaseResultMap" type="com.example.foodordersystem.pojo.Merchants">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <id column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="merchant_name" jdbcType="VARCHAR" property="merchantName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    merchant_id, user_name, merchant_name, `password`, email, phone, create_time, `describe`, 
+    image
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select 
+    <include refid="Base_Column_List" />
+    from merchants
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from merchants
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.foodordersystem.pojo.Merchants">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <selectKey keyProperty="merchantId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into merchants (user_name, merchant_name, `password`, 
+      email, phone, create_time, 
+      `describe`, image)
+    values (#{userName,jdbcType=VARCHAR}, #{merchantName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{describe,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.foodordersystem.pojo.Merchants">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <selectKey keyProperty="merchantId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into merchants
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="merchantName != null">
+        merchant_name,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="describe != null">
+        `describe`,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.foodordersystem.pojo.Merchants">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update merchants
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describe != null">
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.foodordersystem.pojo.Merchants">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update merchants
+    set user_name = #{userName,jdbcType=VARCHAR},
+      merchant_name = #{merchantName,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      `describe` = #{describe,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR}
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </update>
+</mapper>

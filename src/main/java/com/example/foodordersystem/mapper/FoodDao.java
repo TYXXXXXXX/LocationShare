@@ -1,6 +1,7 @@
 package com.example.foodordersystem.mapper;
 
 import com.example.foodordersystem.mapper.utils.Connect;
+import com.example.foodordersystem.pojo.Foods;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,4 +28,6 @@ public class FoodDao {
         }
         return false;
     }
+
+
 }

@@ -1,13 +1,11 @@
 package com.example.foodordersystem;
 
 
-import com.example.foodordersystem.mapper.FoodDao;
-import com.example.foodordersystem.mapper.SearchDao;
-import com.example.foodordersystem.mapper.SearchFood;
-import com.example.foodordersystem.mapper.UserRegis;
+import com.example.foodordersystem.mapper.*;
 import com.example.foodordersystem.mapper.utils.Connect;
 import com.example.foodordersystem.mapper.utils.ImageUtils;
 import com.example.foodordersystem.pojo.Foods;
+import com.example.foodordersystem.pojo.Merchants;
 import org.apache.ibatis.annotations.Mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -154,6 +152,29 @@ class LocationShareApplicationTests {
         for (SearchDao.Merchant merchant : list) {
             System.out.println(merchant);
         }
+    }
+
+    @Test
+    void searchFoods() {
+        List<Foods> list = searchFood.searchFood(1);
+        for (Foods foods : list) {
+            System.out.println(foods);
+        }
+    }
+
+    @Test
+    void Mset() throws SQLException, ClassNotFoundException {
+        System.out.println(regis.isSetM("老0"));
+    }
+    @Test
+    void insert() throws SQLException, ClassNotFoundException {
+        System.out.println(regis.registerM(new Merchants("老六", "蜜雪冰城", "12345"
+                , "1325455", new Timestamp(System.currentTimeMillis()))));
+    }
+    private final UserLogin login = new UserLogin();
+    @Test
+    void seuse() throws Exception {
+        System.out.println(login.login("xxx","12345"));
     }
 
 

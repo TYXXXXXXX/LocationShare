@@ -10,60 +10,96 @@
 // const { json } = require("express");
 // const express = require("express");
 
-$('#window_btn').on('click', function () {
-    var userName = $('#username').val().trim().toString();
-    var password = $('#password').val().trim().toString();
-    var passwordAgain = $('#passwordagain').val().trim().toString();
-    var number = $('#number').val().trim().toString();
-    const str = {
-        userName: userName,
-        password: password,
-        passwordAgain: passwordAgain,
-        number: number,
-    }
-    console.log(str.name);
-    if (userName.length <= 0 || password.length <= 0 || passwordAgain.length <= 0 || number.length <= 0) {
-        alert('请输入完整信息');
-        // window.location.href = window.location.href;
-    } else {
-        again();
-        console.log(1111)
-    }
-    // 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/login/L');
-    console.log("##############")
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-    xhr.send(JSON.stringify(str));
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                console.log(xhr.responseText);
-            }
-        }
-    }
-});
+// $('#window_btn').on('click', function () {
+//     var userName = $('#username').val().trim().toString();
+//     var password = $('#password').val().trim().toString();
+//     var passwordAgain = $('#passwordagain').val().trim().toString();
+//     var number = $('#number').val().trim().toString();
+//     const str = {
+//         userName: userName,
+//         password: password,
+//         passwordAgain: passwordAgain,
+//         number: number,
+//     }
+//     console.log(str.name);
+//     if (userName.length <= 0 || password.length <= 0 || passwordAgain.length <= 0 || number.length <= 0) {
+//         alert('请输入完整信息');
+//         // window.location.href = window.location.href;
+//     } else {
+//         again();
+//         console.log(1111)
+//     }
+//     //
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('POST', 'http://localhost/login/L');
+//     console.log("##############")
+//     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+//     xhr.send(JSON.stringify(str));
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState === 4) {
+//             if (xhr.status === 200) {
+//                 console.log(xhr.responseText);
+//             }
+//         }
+//     }
+// });
 //失去焦点判断用户是否存在
+let isSet = false
 $("#username").blur(function () {
-    if (getUser()[0] !== getUser()[0].trim()) alert("输入不能有空格")
-  //  isRule()
+    console.log("失去焦点")
+    if (getUser()[0] !== getUser()[0].trim() || getUser()[0] === "") alert("输入不能有空格")
     $.ajax({
-        url: "http://localhost:8080/isSet/" + getUser()[0],
+        url: "http://localhost:8080/login/isSet/" + getUser()[0],
         type: "GET",
         success: function (result) {
-            console.log(result);
+            if (!result.flag) noDisplay()
+            else {
+                isSet = true;
+                $("#window_p").css("display", "none")
+            }
         },
         error: function (error) {
             console.log(error);
         }
     });
 })
+$("#number").blur(function () {
+    let isTrue = isRule()
+    if (isTrue && isSet) {
+        show()
+        $.ajax({
+            url: "http://localhost:8080/login/isSet/" + getUser()[0],
+            type: "GET",
+            success: function (result) {
+                if (!result.flag) noDisplay()
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+})
+
+
+const noDisplay = () => {
+    $("#window_p").css("display", "block")
+}
+const show = () => {
+    $("#window_btn").css("opacity", "1").css("pointer-events", "auto");
+}
 
 const isRule = () => {
     if (getUser()[0] !== getUser()[0].trim()
         || getUser()[1] !== getUser()[1].trim()
-        || getUser()[2] !== getUser()[2].trim()) alert("输入不能有空格")
-    if (getUser()[1] !== getUser()[2]) alert("密码不一致")
+        || getUser()[2] !== getUser()[2].trim()) {
+        alert("输入不能有空格")
+        return false
+    }
+    if (getUser()[1] !== getUser()[2]) {
+        alert("密码不一致")
+        return false
+    }
+    return true
 
 
 }
@@ -72,7 +108,34 @@ const getUser = () => {
     return [$('#username').val().toString(), $('#password').val().toString()
         , $("#passwordagain").val().toString(), $("#number").val().toString()]
 }
+console.log(window.hu[0])
+//注册
+// const regis = () => {
+//     isRule()
+$("#window_btn").click(function () {
+    if (isSet && isRule()) {
+        $.ajax({
+            url: "http://localhost:8080/login/" + getUser()[0] + "/" + getUser()[1] + "/" + getUser()[3],
+            type: "POST",
+            success: function (result) {
+                if (result.flag) {
+                    alert(result.msg)
+                    let timer = setTimeout(function () {
+                        window.open("http://localhost:8080/static/pages/dingcan/Details/Takeaway_commodity.html", '_self')
+                        clearTimeout(timer)
+                    }, 1500)
+                }
 
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    } else alert("密码不一致")
+
+})
+console.log("==============>"+hu[0])
+//}
 // 判断第一次密码是不是和第二次相同的密码
 function again() {
     var password = $('#password').val().trim();

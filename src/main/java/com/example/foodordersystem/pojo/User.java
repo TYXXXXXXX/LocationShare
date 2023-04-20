@@ -1,38 +1,41 @@
 package com.example.foodordersystem.pojo;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class User {
-    private int user_id;
-    private String username;
+    private Integer userId;
+    private String userName;
     private String password;
     private String email;
-    private String phone;
-    private Timestamp create_time;
+    public User() {
 
-    public User(int user_id, String username, String password) {
-        this.user_id =  user_id;
-        this.username =  username;
-        this.password =  password;
     }
 
-    public User(String userName, String password) {
+
+    public User(Integer userId, String userName, String password, String email, String phone, Timestamp createTime) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.createTime = createTime;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -59,43 +62,46 @@ public class User {
         this.phone = phone;
     }
 
-    public Timestamp getCreate_time() {
-        return create_time;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Timestamp create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public User() {
-        super();
+    private String phone;
+    private Timestamp createTime;
+
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
+
+
+
 
     public User(String username, String password,String phone, Timestamp create_time) {
-        this.username = username;
+        this.userName = username;
         this.password = password;
         this.phone = phone;
-        this.create_time = create_time;
+        this.createTime = create_time;
     }
 
-    public User(int user_id, String username, String password, String phone, String email) {
-        super();
-        this.user_id = user_id;
-        this.username = username;
-        this.password = password;
-        this.phone = phone;
-        this.email = email;
-    }
+
+
+
 
     @Override
     public String toString() {
         return "user{" +
-                "user_id=" + user_id +
-                ", username='" + username + '\'' +
+                "user_id=" + userId +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", create_time='" + create_time + '\'' +
+                ", create_time='" + createTime + '\'' +
                 '}';
     }
 }
