@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4020055 */
-  src: url('iconfont.woff2?t=1681712071512') format('woff2'),
-       url('iconfont.woff?t=1681712071512') format('woff'),
-       url('iconfont.ttf?t=1681712071512') format('truetype');
+  src: url('iconfont.woff2?t=1681972822309') format('woff2'),
+       url('iconfont.woff?t=1681972822309') format('woff'),
+       url('iconfont.ttf?t=1681972822309') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-31gouwuche:before {
+  content: "\e600";
 }
 
 .icon-tongji:before {

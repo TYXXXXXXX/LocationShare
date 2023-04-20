@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "201222",
+      "name": "3.1购物车",
+      "font_class": "31gouwuche",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "15726936",
       "name": "统计",
       "font_class": "tongji",

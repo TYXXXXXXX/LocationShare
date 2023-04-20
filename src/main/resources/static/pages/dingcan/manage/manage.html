@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>客官，您上座</title>
+    <title>干饭</title>
     <link rel="stylesheet" href="../font/iconfont.css">
     <link rel="stylesheet" href="../manage/manage.css">
 
@@ -21,7 +21,7 @@
         <div class="tab">
             <!-- 项目名称 -->
             <div class="tab_title">
-                <h4>永昕外卖</h4>
+                <h4>干饭</h4>
             </div>
             <!-- 搜索框 -->
             <form action="">
@@ -46,21 +46,27 @@
 
         <!-- 这里是完善信息的模块 -->
         <div id="Information">
-            <form action="">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">用户名：</label>
-                    <input type="text" class="form-control" placeholder="请输入您的用户名">
-                    <label for="exampleInputEmail1">手机号：</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="请输入您的手机号">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱">
-                    <label for="exampleInputEmail1">密码</label>
-                    <input type="password" class="form-control" id="exampleInputEmail1" placeholder="请输入您的密码">
-                    <label for="exampleInputEmail1">地址</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入您的地址">
-                    <button type="submit" class="btn btn-default" id="Information_btn">Submit</button>
-                </div>
-            </form>
+            <!-- <form action="locallhost/"> </form> -->
+            <div class="form-group">
+<!--                <label for="exampleInputEmail1">用户名：</label>-->
+<!--                <input id="userName" type="text" class="form-control" placeholder="请输入您的用户名" value="">-->
+                <label for="exampleInputEmail1">商家图片：</label>
+                <input id="userImg" type="file" id="exampleInputFile">
+<!--                <label for="exampleInputEmail1">手机号：</label>-->
+<!--                <input id="userNumber" type="number" class="form-control" id="exampleInputEmail1" placeholder="请输入您的手机号"-->
+<!--                    value="">-->
+                <label for="exampleInputEmail1">Email</label>
+                <input id="userEmail" type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱"
+                    value="">
+<!--                <label for="exampleInputEmail1">密码</label>-->
+<!--                <input id="userPassword" type="password" class="form-control" id="exampleInputEmail1"-->
+<!--                    placeholder="请输入您的密码" value="">-->
+                <label for="exampleInputEmail1">地址</label>
+                <input id="userAddress" type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入您的地址"
+                    value="">
+                <button type="submit" class="btn btn-default" id="Information_btn">提交</button>
+            </div>
+
         </div>
         <!-- 左侧的描述：我的菜品、、等 -->
         <div class="left_box">
@@ -104,9 +110,9 @@
                         <tr id="1">
                             <td id="ID">1</td>
                             <td>
-                                红烧李丹宇
+
                             </td>
-                            <td><img src="../images/touxiang1.jpg" class="img-rounded"></td>
+                            <td><img src="" class="img-rounded"></td>
                             <td>
                                 1元
                             </td>
@@ -120,8 +126,6 @@
 
 
                 </table>
-
-
             </div>
 
             <!-- 这里是查看订单的右侧详细图 -->
@@ -143,16 +147,17 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>name</td>
+                            <td>张三</td>
                             <td>155xxxxxxxx</td>
-                            <td>红烧李丹宇</td>
-                            <td id="amount">1</td>
+                            <td>水煮鱼</td>
+                            <td id="amount">32</td>
                             <td>
                                 <form action="">
                                     <select class="form-control">
-                                        <option>派送中</option>
+                                        <option>未付款</option>
                                         <option>已完成</option>
                                         <option>取消订单</option>
+                                        <option>配送中</option>
                                     </select>
                                 </form>
                             </td>
@@ -178,13 +183,13 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td> <input type="text" class="form-control" id="caipinname" value=""></td>
-                        <td><input type="file" id="exampleInputFile" itemid="caipinfile" value=""></td>
-                        <td><input type="number" style="width: 60%;" class="form-control" value="" id="caipinprice">
+                        <td> <input type="text" class="form-control" id="caipinName" value=""></td>
+                        <td><input type="file" class="form-control" id="caipinFile"></td>
+                        <td><input type="number" style="width: 60%;" class="form-control" value="" id="caipinPrice">
                             <span style="float: right;position: relative;top: -30px;">元</span>
                         </td>
                         <td>
-                            <input type="text" value="" class="form-control" id="caipintext">
+                            <input type="text" value="" class="form-control" id="caipinText">
                         </td>
                         <td> <button type="submit" value="" class="btn btn-default" id="add_submit">提交</button></td>
                     </tr>

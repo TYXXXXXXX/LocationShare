@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* @font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.woff2?t=1681712071512') format('woff2'),
+        url('iconfont.woff?t=1681712071512') format('woff'),
+        url('iconfont.ttf?t=1681712071512') format('truetype');
+} */
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:visited,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.container {
+    height: 1000px;
+    background-color: #f3f3f3;
+}
+
+#cuisine #tbcuisine img {
+    width: 60px;
+}
+
+#cuisine>span {
+    font-size: 50px;
+    float: right;
+}
+
+#cuisine #shop {
+    display: none;
+    width: 100px;
+    /* height: 200px; */
+    background-color: #e3e3e3;
+    position: fixed;
+    float: right;
+    margin-left: 1150px;
+    z-index: 10;
+}
+
+#cuisine #shop li {
+    height: 30px;
+    padding: 5px 5px;
+}
+
+#jiesuan {
+    position: fixed;
+    margin-top: -516px;
+    margin-left: 953px;
+    z-index: 11;
+}

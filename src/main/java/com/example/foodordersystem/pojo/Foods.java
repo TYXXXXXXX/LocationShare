@@ -51,12 +51,12 @@ public class Foods {
      */
     private String picture;
 
-    public Foods(String foodName, BigDecimal price, String description,String picture) {
-        this.foodName = foodName;
-        this.price = price;
-        this.description = description;
-        this.picture = picture;
-    }
+//    public Foods(String foodName, BigDecimal price, String description,String picture) {
+//        this.foodName = foodName;
+//        this.price = price;
+//        this.description = description;
+//        this.picture = picture;
+//    }
 
     public Foods(String foodName, BigDecimal price, String description, Integer merchantId, Date createTime,
                  String picture) {
@@ -65,6 +65,12 @@ public class Foods {
         this.description = description;
         this.merchantId = merchantId;
         this.createTime = createTime;
+        this.picture = picture;
+    }
+    public Foods(String foodName, BigDecimal price, String description,String picture) {
+        this.foodName = foodName;
+        this.price = price;
+        this.description = description;
         this.picture = picture;
     }
 }

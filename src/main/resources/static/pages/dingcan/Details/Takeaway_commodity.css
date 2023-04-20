@@ -3,24 +3,6 @@
     padding: 0;
 }
 
-/* @font-face {
-    font-family: 'iconfont';
-    src: url('iconfont.eot');
-    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
-        url('iconfont.woff') format('woff'),
-        url('iconfont.ttf') format('truetype'),
-        url('iconfont.svg#iconfont') format('svg');
-}
-
-.iconfont {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-stroke-width: 0.2px;
-    -moz-osx-font-smoothing: grayscale;
-} */
-
 li {
     list-style: none;
 }
@@ -57,7 +39,9 @@ a {
     border: 2px solid #e8eaed;
     border-radius: 10px;
 }
-
+#tab_username{
+    font-size: 19px;
+}
 
 /*############################ zhongjian中间展示的页面 */
 .show {
@@ -113,36 +97,49 @@ a {
 
 
 
-.shangjia {
+#shangjia {
     margin-top: 30px;
-    height: 500px;
+    /*height: 500px;*/
     background-color: #e8eaed;
     border-radius: 2px;
     /* display: flex; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    border-radius: 3px;
 }
 
-.shangjia .shangjiabox {
+#shangjia .shangjiabox {
     width: 370px;
     height: 200px;
-    border: 1px solid #656464;
+    /* border: 1px solid #656464; */
+    background-color: rgb(255, 255, 255);
     margin: 17px 10px;
-
+    border-radius: 3px;
 }
 
-.shangjia .shangjiabox div {
-    display: inline-block;
+/*#shangjia .shangjiabox #shangjia_text {*/
+/*    position: relative;*/
+/*    color: #969696;*/
+/*    top: 25px;*/
+/*    left: -65px;*/
+/*}*/
+#shangjia .shangjiabox  div{
+    position: relative;
+    top: -136px;
+    left: 158px;
+    display: block;
+    /*display: inline-block;*/
+    /*float: left;*/
+}
+#shangjia .shangjiabox span{
+    position: relative;
+    left: -56px;
 }
 
 
 
-.shangjia .shangjiabox div:first-child {
-    width: 100px;
-}
-
-.shangjia .shangjiabox div strong {
+#shangjia .shangjiabox strong {
     font-size: 18px;
     position: relative;
     top: -37px;
@@ -150,6 +147,9 @@ a {
 
 }
 
-.shangjia .shangjiabox img {
+#shangjia .shangjiabox img {
+    display: inline-block;
     width: 150px;
+    height: 150px;
+    margin: 29px 9px;
 }

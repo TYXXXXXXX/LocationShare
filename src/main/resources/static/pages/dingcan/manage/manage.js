@@ -12,7 +12,8 @@ logout.addEventListener('click', function () {
     }
 
 })
-window.hu = [2,1]
+
+
 // 完善资料的模块（点击弹出一个资料框）
 var setting = document.getElementById('setting');
 var Iformation = document.getElementById('Information');
@@ -26,7 +27,45 @@ setting.addEventListener('click', function () {
         flag_infor = true;
     }
 })
-//拖拽
+
+
+// Ajax 传递请求
+// ################这里是提交商家详细信息的表单
+var Information_btn = document.getElementById('Information_btn');
+Information_btn.addEventListener('click', function () {
+    // console.log(1);
+    var userName = $('#userName').val().trim();
+    var userImg = $('#userImg').val().trim();
+    var userNumber = $('#userNumber').val().trim();
+    var userEmail = $('#userEmail').val().trim();
+    var userPassword = $('#userPassword').val().trim();
+    var userAddress = $('#userAddress').val().trim();
+    const str = {
+        userName: userName,
+        userImg: userImg,
+        userNumber: userNumber,
+        userEmail: userEmail,
+        userPassword: userPassword,
+        userAddress: userAddress,
+    }
+    console.log(str);
+    // 发送请求
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'http://locallhost/searchFood/1');
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.send(JSON.stringify(str));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status >= 200 && xhr.status <= 300) {
+                console.log(xhr.responseText);
+            }
+        }
+    }
+})
+
+
+
+//################让框可拖拽
 Iformation.addEventListener('mousedown', function (e) {
     var x = e.pageX - Iformation.offsetLeft;
     var y = e.pageY - Iformation.offsetTop;
@@ -50,7 +89,6 @@ var ul = document.getElementById('ul')
 var li = ul.querySelectorAll("li");
 // console.log(li);
 // console.log(li[0]);
-
 var sum = document.querySelector('#sum');
 var cuisine = document.querySelector('#cuisine');
 var orders = document.querySelector('#orders');
@@ -106,6 +144,35 @@ var str = date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.
 todayData.innerHTML = "日期：" + str;
 
 
+
+// 这里是我的菜品的模块
+function getlist() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:8080/user/searchFood/1');
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status <= 300) {
+                let ss = JSON.parse(xhr.responseText);
+                // console.log(ss);
+                //下面是 获取成功后的操作
+                // console.log(ss[1]);
+                var rows = [];
+                $.each(ss.data,function(i,value){
+                    console.log(value.foodName);
+                    rows.push("<tr><td>" + (i+1) + "</td><td>" + value.foodName + "</td> <td><img src=../images/food"+(i+1)+".jpg></td><td>" + value.price + "元</td> <td> " + value.description + "</td><td ><button type=" + "submit" + "className=" + "btn btn-default" + ">下架</button> " + "</td></tr>");
+                })
+                $('#tbcuisine').empty().append(rows.join(""));
+               }
+        }
+    }
+}
+getlist();
+
+
+
 // ///////////////这里是"我的菜品"里下架的点击事件
 var Delete = document.querySelectorAll('.delete');
 for (var i = 0; i < Delete.length; i++) {
@@ -113,8 +180,8 @@ for (var i = 0; i < Delete.length; i++) {
         // console.log(1);
         // 向数据库发送删除请求
         var xhr = new XMLHttpRequest();
-        xhr.open('post', 'http://127.0.0.1:8000/delete');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-from')
+        xhr.open('GET', 'http://localhost:8080/user/DELETE');
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
@@ -125,65 +192,66 @@ for (var i = 0; i < Delete.length; i++) {
                 }
             }
         }
-        // 这里是从前端页面上删除表格
-        //获取tr的id序号
-        console.log(Delete[i].parentNode);
-        // this
+        getlist();
+        // 重新加载一遍
     })
 }
-// 这里是从前端页面上删除表格:先获取list信息，再删除，在获取
 
-// 获取菜单页面的数据
-// function getCuisine() {
-//     $.get('http://127.0.0.1:8000/server/getCuisine', function (res) {
-//         // console.log(res);
-//         if (res.status != 200) {
-//             return alert('获取数据失败')
-//         }
-//         //下面是 获取成功后的操作
-//         var rows = [];
-//         $.each(res.data, function (i, item) {
-//             rows.push('<tr><td>' + item.id + '</td><td>' + item.bookname + '</td><td>' + item.author + '</td><td>' + item.publisher + '</td><td><a herf="javascript:;" id="del" data-id="' + item.id + '">删除</a></td></tr>')
-//         })
-//         $('#tbcuisine').empty().append(rows.join(''))
-//     });
-// }
-// getCuisine();
 
 
 // ######################这里是添加菜单的模块（点击添加按钮，提交一份到数据库，一份到前端）
-
-var add_submit = document.querySelector('#add_submit');
+var add_submit = document.getElementById('add_submit');
 var tbcuisine = document.getElementById('tbcuisine');
 
-// add_sumbit.onclick = function () {
-// add_submit.addEventListener('click', function () {
-$('#add_submit').on('click', function () {
-    // 到前端
-    // console.log(11);
-    var caipinname = $('#caipinname').val().trim();
-    var caipinfile = $('#caipinfile').src();
-    var caipinprice = $('#caipinprice').val().trim();
-    var caipintext = $('#caipintext').val().trim();
+add_submit.addEventListener('click', function () {
+    getlist();
+    var caipinName = $('#caipinName').val().trim();
+    var caipinFile = $('#caipinFile').val();
+    var caipinPrice = $('#caipinPrice').val();
+    var caipinText = $('#caipinText').val();
     const str = {
-        "caipinName": caipinname,
-        "caipinfile": caipinfile,
-        "caipinprice": caipinprice,
-        "caipintext": caipintext,
+        caipinName: caipinName,
+        caipinFile: caipinFile,
+        caipinPrice: caipinPrice,
+        caipinText: caipinText,
     }
-    console.log(str.caipinfile);
-    var rows = [];
-    $.each(str.data, function () {
-        // str.push("<tr id="+1+">< td id = "+ID+" > 1</ ><td>红烧李丹宇 </td><td><img src="+"../images/touxiang1.jpg" +"class="+"img-rounded"></td><td> 1元</td><td>香甜可口，肥而不腻</td><td class="delete"> <button type="submit" class="btn btn-default " id="">下架</button></td></tr > ")
+    console.log(str);
+    // 发送请求到服务端
+    $.POST('http://localhost:8080/user/ADD',str,function(){
+        getlist();
     })
-    $('#tbcuisine').empty().append(rows.join(''))
-
-
-    // 到数据库的
-
 })
 
 
+
+// 用户提交订单，商家的显示
+
+function getOrders() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:8080/user/searchFood/1');
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status <= 300) {
+                // console.log(xhr.responseText);
+                let ss = JSON.parse(xhr.responseText);
+                // console.log(ss);
+                // console.log(ss[0]);
+                //下面是 获取成功后的操作
+                // console.log(ss[1]);
+                var rows = [];
+                $.each(ss,function(i,value){
+                    // console.log(value.foodName);
+                    rows.push("<tr><td>" + (i+1) + "</td><td>" + value.foodName + "</td> <td><img src=" + "value.price" + "></td><td>" + value.price + "元</td> <td> " + value.description + "</td><td ><button type=" + "submit" + "className=" + "btn btn-default" + ">下架</button> " + "</td></tr>");
+                })
+                $('#tbcuisine').empty().append(rows.join(""));
+            }
+        }
+    }
+}
+getOrders();
 
 
 

@@ -5,24 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>永昕外卖</title>
+    <title>干饭</title>
     <link rel="stylesheet" href="Takeaway_commodity.css">
     <script src="Takeaway_commodity.js"></script>
     <link rel="stylesheet" href="../font/iconfont.css">
-<!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<!--    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>-->
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
-<!--    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>-->
-    <!-- 引入 jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- 引入 jQuery UI -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-
 </head>
 
 <body>
@@ -30,29 +20,29 @@
     <div class="tab container">
         <div class="row">
             <div class="col-md-2">
-                <h2>永昕外卖</h2>
+                <h2>干饭</h2>
             </div>
             <!-- 搜索框 -->
             <div class="search col-md-3">
-                <input id="tab_search" class="form-control" type="text" value="" placeholder="请输入店名或食物名称">
+                <input id="tab_search " class="form-control" type="text" value="" placeholder="请输入店名和食物名称">
             </div>
             <!-- 搜索按钮 -->
             <div class=" search col-md-1">
-                <button type="submit" class="btn btn-default" id="search">搜索</button>
+                <button type="submit" class="btn btn-default">搜索</button>
             </div>
             <!-- 友情赞助 -->
             <div class="col-md-1">
                 <h3>赞助</h3>
             </div>
             <!-- 用户登录按钮 -->
-            <div class="tab_login col-md-3">
+            <div class="tab_login col-md-3" style="display: none">
                 <button id="tab_login_btn" onclick="window.open('../Login/Takeaway_login.html?user=true')">
                     立即登录
                 </button>
             </div>
             <!-- 登陆成功后展示的用户名 -->
-            <div class="tab_username col-md-1">
-                <h4>用户名</h4>
+            <div class=" col-md-1" id="tab_username" style="display: none">
+                用户名
             </div>
 
         </div>
@@ -70,6 +60,7 @@
                     <li>正餐</li>
                     <li>饮品</li>
                     <li>优惠</li>
+
                 </ul>
             </div>
             <!-- 中央图片展示 -->
@@ -84,76 +75,19 @@
         </div>
 
 
-
         <!-- 商家页面 -->
         <h3>商家：</h3>
-        <div class="shangjia row">
-            <div class="shangjiabox">
-                <img src="../images/fuqifeipian.png" alt="" class="img-rounded">
+        <div class=" row" id="shangjia">
+            <div class="shangjiabox" >
+                <img src="../images/shuizhuyu.jpg" class="img-rounded">
                 <div>
-                    <strong>店家名称：商家</strong>
-                </div>
-                <div>
-                    <ul>
-                        <li>15元起送</li>
-                        <li>好评如潮</li>
-                        <li>“很划算”</li>
-                    </ul>
+                    <strong>店家名称</strong>
+                    <span>描述</span>
                 </div>
             </div>
-            <div class="shangjiabox"></div>
-            <div class="shangjiabox"></div>
-            <div class="shangjiabox"></div>
-            <div class="shangjiabox"></div>
-            <div class="shangjiabox"></div>
-
         </div>
-
     </div>
+<script src="Takeaway_commodity.js"></script>
 </body>
 
 </html>
-<script>
-        $(document).ready(function() {
-            // 初始化自动完成组件
-            $("#tab_search").autocomplete({
-                source: function(request, response) {
-                    // 发送AJAX请求获取数据
-                    $.ajax({
-                        url: "http://localhost/user/search/"+$('#tab_search').val().trim(),
-                        dataType: "json",
-                        data: {
-                            term: request.term
-                        },
-                        success: function(data) {
-                            // 处理返回的数据
-                            response(data);
-                        }
-                    });
-                },
-                select: function(event, ui) {
-                    const selectedValue = ui.item.value;
-                    // 在这里添加您的自定义操作
-                    console.log("用户选择了：" + selectedValue);
-                },
-                minLength: 1 // 触发自动完成的最小字符数
-            });
-
-        // console.log($('#tab_search').val().trim())
-        // $.ajax({
-        //     type: "GET",
-        //     url: "http://localhost/user/search/"+$('#tab_search').val().trim(),
-        //     dataType: "json",
-        //     success: function(data) {
-        //         // 处理数据
-        //         console.log(data); // 在控制台中输出数据
-        //     },
-        //     error: function(xhr, status, error) {
-        //         // 处理错误
-        //         console.log("Error: " + error);
-        //         console.log("status"+status)
-        //     }
-        // });
-    })
-
-</script>
