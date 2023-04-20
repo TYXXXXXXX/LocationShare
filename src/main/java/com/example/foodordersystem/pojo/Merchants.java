@@ -62,6 +62,13 @@ public class Merchants {
      */
     private String describe;
 
+
+
+    public Merchants(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     /**
      * Column: image
      * Type: VARCHAR(255)
@@ -75,4 +82,6 @@ public class Merchants {
         this.phone = password;
         this.createTime = createTime;
     }
+
+
 }

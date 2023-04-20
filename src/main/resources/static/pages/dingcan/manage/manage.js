@@ -12,7 +12,7 @@ logout.addEventListener('click', function () {
     }
 
 })
-
+window.hu = [2,1]
 // 完善资料的模块（点击弹出一个资料框）
 var setting = document.getElementById('setting');
 var Iformation = document.getElementById('Information');

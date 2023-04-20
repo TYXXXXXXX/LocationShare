@@ -22,11 +22,11 @@ public class UserRegis {
         Connection conn = DriverManager.getConnection(url, user_name, password);
         String sql = "insert into users(user_name,password,email,phone,create_time) values(?, ?, ?,?,?)";
         PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1,user.getUsername() );
+        pst.setString(1,user.getUserName() );
         pst.setString(2, Md5Util.md5(user.getPassword()));
         pst.setString(3,user.getEmail() );
         pst.setString(4,user.getPhone() );
-        pst.setTimestamp(5,user.getCreate_time());
+        pst.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
         int count = pst.executeUpdate();
         pst.close();
 

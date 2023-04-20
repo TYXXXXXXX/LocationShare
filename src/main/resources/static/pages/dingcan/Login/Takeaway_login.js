@@ -108,7 +108,7 @@ const getUser = () => {
     return [$('#username').val().toString(), $('#password').val().toString()
         , $("#passwordagain").val().toString(), $("#number").val().toString()]
 }
-
+console.log(window.hu[0])
 //注册
 // const regis = () => {
 //     isRule()
@@ -134,7 +134,7 @@ $("#window_btn").click(function () {
     } else alert("密码不一致")
 
 })
-
+console.log("==============>"+hu[0])
 //}
 // 判断第一次密码是不是和第二次相同的密码
 function again() {

@@ -1,10 +1,7 @@
 package com.example.foodordersystem;
 
 
-import com.example.foodordersystem.mapper.FoodDao;
-import com.example.foodordersystem.mapper.SearchDao;
-import com.example.foodordersystem.mapper.SearchFood;
-import com.example.foodordersystem.mapper.UserRegis;
+import com.example.foodordersystem.mapper.*;
 import com.example.foodordersystem.mapper.utils.Connect;
 import com.example.foodordersystem.mapper.utils.ImageUtils;
 import com.example.foodordersystem.pojo.Foods;
@@ -173,6 +170,11 @@ class LocationShareApplicationTests {
     void insert() throws SQLException, ClassNotFoundException {
         System.out.println(regis.registerM(new Merchants("老六", "蜜雪冰城", "12345"
                 , "1325455", new Timestamp(System.currentTimeMillis()))));
+    }
+    private final UserLogin login = new UserLogin();
+    @Test
+    void seuse() throws Exception {
+        System.out.println(login.login("xxx","12345"));
     }
 
 

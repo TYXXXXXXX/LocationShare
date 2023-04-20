@@ -6,17 +6,11 @@ import com.example.foodordersystem.mapper.UserLogin;
 import com.example.foodordersystem.mapper.UserRegis;
 import com.example.foodordersystem.pojo.Merchants;
 import com.example.foodordersystem.pojo.User;
-import com.example.foodordersystem.pojo.Users;
-import com.example.foodordersystem.pojo.sh;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.ibatis.annotations.Param;
+
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.List;
 
 @RestController
 @RequestMapping("/login")
@@ -28,14 +22,20 @@ public class LoginController {
     public LoginController() throws SQLException, ClassNotFoundException {
     }
 
-    @PostMapping("/user/{name}/{password}")
-    public R login(@PathVariable String name,@PathVariable String password) throws Exception {
-        System.out.println(name+""+password);
-        if(login.login(name,password)){
-            return new R(true,userManage.selectOne(name));
+    @PostMapping("/user")
+    public R login(@RequestBody User user) throws Exception {
+        if(login.login(user.getUserName(),user.getPassword())){
+            return new R(true,userManage.selectOne(user.getUserName()));
         }
-        System.out.println("11111111111111");
-        return new R(false,"用户名和密码不正确");
+        return new R(false,"用户名或密码不正确");
+    }
+
+    @PostMapping("/M")
+    public R loginM(@RequestBody Merchants merchants) throws SQLException, ClassNotFoundException {
+        if(login.loginM(merchants.getUserName(),merchants.getPassword())){
+            return new R(true,userManage.selectOneM(merchants.getUserName()));
+        }
+        return new R(false,"用户名或密码不正确");
     }
 
     @PostMapping("/{name}/{password}/{phone}")
