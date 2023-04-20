@@ -10,21 +10,20 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
 
 
-
 </head>
 
 <body>
 <div class="window">
     <h1>欢迎您加入我们</h1>
-    <input type="text" placeholder="请输入用户名" id="username" value=""><br>
-    <input type="password" placeholder="请输入密码" id="password" value=""><br>
-    <p id="window_p1">没有账号？点击注册</p> <button id="reg">注册</button><br>
+    <input type="text" placeholder="请输入用户名" id="username1" value=""><br>
+    <input type="password" placeholder="请输入密码" id="password1" value=""><br>
+    <p id="window_p1">没有账号？点击注册</p>
+    <button id="reg">注册</button>
+    <br>
     <button id="window_btn2">登录</button>
 
 
-
     <button id="test">test</button>
-
 
 
 </div>
@@ -33,31 +32,45 @@
 
 </html>
 <script>
-    $("#reg").click(function () {
-        window.open('http://localhost/static/pages/dingcan/Login/Takeaway_login.html')
-    })
     $("#window_btn2").click(function () {
-        // 发送AJAX请求获取数据
         $.ajax({
-            url: "http://localhost/user/search/"+$('#tab_search').val().trim(),
+            url: "http://localhost/login" + $('#username1').val().trim() + $("#password1"),
             dataType: "json",
-            data: {
-                term: request.term
-            },
-            success: function(data) {
+            // data: {
+            //     term: request.term
+            // },
+            success: function (data) {
                 // 处理返回的数据
-                response(data);
+                console.log(data);
             }
         });
     })
-    $("#test").click(function () {
-        $.ajax({
-            url: "http://localhost/user/searchFood/1",
-            dataType: "json",
-            success: function(data) {
-                // 处理返回的数据
-                console.log(data)
-            }
-        });
-    })
+
+    // $("#reg").click(function () {
+    //     window.open('http://localhost/static/pages/dingcan/Login/Takeaway_login.html')
+    // })
+    // $("#window_btn2").click(function () {
+    //     // 发送AJAX请求获取数据
+    //     $.ajax({
+    //         url: "http://localhost/user/search/"+$('#tab_search').val().trim(),
+    //         dataType: "json",
+    //         data: {
+    //             term: request.term
+    //         },
+    //         success: function(data) {
+    //             // 处理返回的数据
+    //             response(data);
+    //         }
+    //     });
+    // })
+    // $("#test").click(function () {
+    //     $.ajax({
+    //         url: "http://localhost/user/searchFood/1",
+    //         dataType: "json",
+    //         success: function(data) {
+    //             // 处理返回的数据
+    //             console.log(data)
+    //         }
+    //     });
+    // })
 </script>

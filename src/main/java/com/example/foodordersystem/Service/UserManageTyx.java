@@ -1,6 +1,7 @@
 package com.example.foodordersystem.Service;
 
 import com.example.foodordersystem.mapper.utils.Connect;
+import com.example.foodordersystem.pojo.Users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -72,6 +73,20 @@ public class UserManageTyx {
         }
         pst1.close();
         return false;
+    }
+
+    public Users selectOne(String name) throws SQLException {
+        String sql = "select * from users";
+        PreparedStatement pst = connection.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        rs.next();
+        rs.close();
+        pst.close();
+        connection.close();
+        return new Users(rs.getInt(1),rs.getString(2)
+        ,rs.getString(3),rs.getString(4),rs.getString(5)
+        ,rs.getDate(6));
+
     }
 
     public void close() throws SQLException {

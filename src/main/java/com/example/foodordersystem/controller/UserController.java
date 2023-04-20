@@ -1,13 +1,11 @@
 package com.example.foodordersystem.controller;
 
+import com.example.foodordersystem.controller.utils.R;
 import com.example.foodordersystem.mapper.SearchDao;
 import com.example.foodordersystem.mapper.SearchFood;
 import com.example.foodordersystem.pojo.Foods;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +30,11 @@ public class UserController {
     public List<Foods> searchFood(@PathVariable Integer id) {
         return searchFood.searchFood(id);
     }
+
+//    @PostMapping("/saveFood")
+//    public R saveFood(@RequestBody Foods foods){
+//
+//    }
 
 
 }
