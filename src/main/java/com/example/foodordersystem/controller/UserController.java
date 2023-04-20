@@ -7,6 +7,7 @@ import com.example.foodordersystem.pojo.Foods;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -15,6 +16,9 @@ import java.util.List;
 public class UserController {
     private final SearchDao searchDao = new SearchDao();
     private final SearchFood searchFood = new SearchFood();
+
+    public UserController() throws SQLException, ClassNotFoundException {
+    }
 
     @GetMapping
     public void join() {
@@ -35,6 +39,11 @@ public class UserController {
 //    public R saveFood(@RequestBody Foods foods){
 //
 //    }
+
+    @GetMapping("/Merchants")
+    public R sendMerchants() throws SQLException, ClassNotFoundException {
+       return new R(true,searchDao.getMerchants());
+    }
 
 
 }

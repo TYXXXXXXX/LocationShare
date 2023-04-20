@@ -71,6 +71,12 @@ public class User {
         super();
     }
 
+    public User(String username, String password,String phone, Timestamp create_time) {
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.create_time = create_time;
+    }
 
     public User(int user_id, String username, String password, String phone, String email) {
         super();
