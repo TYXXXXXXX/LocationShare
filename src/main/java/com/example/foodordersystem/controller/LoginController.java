@@ -4,7 +4,7 @@ import com.example.foodordersystem.Service.UserManageTyx;
 import com.example.foodordersystem.controller.utils.R;
 import com.example.foodordersystem.mapper.UserLogin;
 import com.example.foodordersystem.mapper.UserRegis;
-import com.example.foodordersystem.pojo.Test2;
+import com.example.foodordersystem.pojo.Merchants;
 import com.example.foodordersystem.pojo.User;
 import com.example.foodordersystem.pojo.Users;
 import com.example.foodordersystem.pojo.sh;
@@ -41,14 +41,30 @@ public class LoginController {
     @PostMapping("/{name}/{password}/{phone}")
     public R regis(@PathVariable String name, @PathVariable String password,@PathVariable String phone) throws Exception {
        if(regis.register(new User(name,password ,phone,new Timestamp(System.currentTimeMillis())))){
-           return new R(true,"注册成功");
+           return new R(true,"注册成功,即将跳转...");
        }
        return new R(false,"请稍后再试");
     }
 
+    @PostMapping("/R2")
+    public R regis2(@RequestBody Merchants merchants) throws SQLException, ClassNotFoundException {
+        if(regis.registerM(merchants)) {
+            return new R(true,"注册成功,即将跳转...");
+        }
+        return new R(false,"请稍后再试");
+    }
+
     @GetMapping("/isSet/{name}")
     public R isSet(@PathVariable String name) throws SQLException, ClassNotFoundException {
+        System.out.println("执行isSet");
         if(regis.isSet(name)) return new R(false,"用户已存在");
+        return new R(true,"");
+    }
+
+    @GetMapping("/isSet2/{name}")
+    public R isSet2(@PathVariable String name) throws SQLException, ClassNotFoundException {
+
+        if(regis.isSetM(name)) return new R(false,"用户已存在");
         return new R(true,"");
     }
 

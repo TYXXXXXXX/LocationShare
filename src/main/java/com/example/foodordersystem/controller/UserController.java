@@ -31,8 +31,8 @@ public class UserController {
     }
 
     @GetMapping("/searchFood/{id}")
-    public List<Foods> searchFood(@PathVariable Integer id) {
-        return searchFood.searchFood(id);
+    public R searchFood(@PathVariable Integer id) {
+        return new R(true,searchFood.searchFood(id));
     }
 
 //    @PostMapping("/saveFood")
