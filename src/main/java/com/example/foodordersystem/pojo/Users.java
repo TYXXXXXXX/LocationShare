@@ -1,12 +1,15 @@
 package com.example.foodordersystem.pojo;
 
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
  * Table: users
  */
 @Data
+@AllArgsConstructor
 public class Users {
     /**
      * Column: user_id
@@ -43,4 +46,5 @@ public class Users {
      * Type: DATETIME
      */
     private Date createTime;
+
 }

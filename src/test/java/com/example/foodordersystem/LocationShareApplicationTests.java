@@ -13,11 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -122,15 +124,22 @@ class LocationShareApplicationTests {
 
 
     }
+    SearchFood searchFood = new SearchFood();
+
 
     @Test
     void searchFood() {
-        SearchFood searchFood = new SearchFood();
         List<Foods> list = searchFood.searchFood(1);
         for (Foods foods : list) {
             System.out.println(foods.toString());
         }
 
+    }
+
+    @Test
+    void saveFood() {
+        System.out.println(searchFood.saveFood(new Foods("丸子", BigDecimal.valueOf(3.3), "好吃不贵",
+                6, new Timestamp(System.currentTimeMillis()), "sss")));
     }
 
 
