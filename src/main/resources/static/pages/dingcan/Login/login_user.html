@@ -34,14 +34,17 @@
 <script>
     $("#window_btn2").click(function () {
         $.ajax({
-            url: "http://localhost/login" + $('#username1').val().trim() + $("#password1"),
-            dataType: "json",
+            url: "http://localhost:8080/login/user/uu/123",
+            type: "POST",
             // data: {
-            //     term: request.term
+            //     param1: $("#username1").val().toString(),
+            //     param2: $("#password1").val().toString()
             // },
-            success: function (data) {
-                // 处理返回的数据
-                console.log(data);
+            success: function(result) {
+                console.log(result);
+            },
+            error: function(error) {
+                console.log(error);
             }
         });
     })

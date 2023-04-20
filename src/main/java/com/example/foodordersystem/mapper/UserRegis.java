@@ -1,12 +1,16 @@
 package com.example.foodordersystem.mapper;
 
 import com.example.foodordersystem.Service.utils.Md5Util;
+import com.example.foodordersystem.mapper.utils.Connect;
 import com.example.foodordersystem.pojo.User;
 
 import java.sql.*;
 
 //zxr
 public class UserRegis {
+
+    public UserRegis() throws SQLException, ClassNotFoundException {
+    }
 
     public boolean register(User user) throws Exception {
         String driverName = "com.mysql.cj.jdbc.Driver";
@@ -15,16 +19,6 @@ public class UserRegis {
         String password = "root";
         Class.forName(driverName);
         Connection conn = DriverManager.getConnection(url, user_name, password);
-        String sql0 = "select user_name from users";
-        PreparedStatement pst2 = conn.prepareStatement(sql0);
-        ResultSet rs =  pst2.executeQuery();
-        String name = user.getUsername();
-        while (rs.next()){
-           if(name.equals(rs.getString(1))){
-               System.out.println("该用户已存在");
-               return false;
-           }
-       }
         String sql = "insert into users(user_name,password,email,phone,create_time) values(?, ?, ?,?,?)";
         PreparedStatement pst = conn.prepareStatement(sql);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -35,8 +29,21 @@ public class UserRegis {
         pst.setTimestamp(5,user.getCreate_time());
         int count = pst.executeUpdate();
         pst.close();
-        pst2.close();
+
         conn.close();
         return count == 1;
+    }
+
+    public boolean isSet(String name) throws SQLException, ClassNotFoundException {
+        final Connection connection = Connect.getDriver();
+        String sql = "select user_name from users where user_name = ?";
+        PreparedStatement pst2 = connection.prepareStatement(sql);
+        pst2.setString(1,name);
+        ResultSet rs =  pst2.executeQuery();
+        boolean flag = rs.next();
+        rs.close();
+        pst2.close();
+        connection.close();
+        return flag;
     }
 }

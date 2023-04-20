@@ -4,6 +4,7 @@ package com.example.foodordersystem;
 import com.example.foodordersystem.mapper.FoodDao;
 import com.example.foodordersystem.mapper.SearchDao;
 import com.example.foodordersystem.mapper.SearchFood;
+import com.example.foodordersystem.mapper.UserRegis;
 import com.example.foodordersystem.mapper.utils.Connect;
 import com.example.foodordersystem.mapper.utils.ImageUtils;
 import com.example.foodordersystem.pojo.Foods;
@@ -115,7 +116,7 @@ class LocationShareApplicationTests {
     }
 
     @Test
-    void search() {
+    void search() throws SQLException, ClassNotFoundException {
         SearchDao searchDao = new SearchDao();
         List<String> strings = searchDao.searchFood("鸡肉");
         for (String string : strings) {
@@ -140,6 +141,19 @@ class LocationShareApplicationTests {
     void saveFood() {
         System.out.println(searchFood.saveFood(new Foods("丸子", BigDecimal.valueOf(3.3), "好吃不贵",
                 6, new Timestamp(System.currentTimeMillis()), "sss")));
+    }
+    UserRegis regis = new UserRegis();
+    @Test
+    void isSeta() throws SQLException, ClassNotFoundException {
+        System.out.println(regis.isSet("wo"));
+    }
+    SearchDao searchDao = new SearchDao();
+    @Test
+    void mer() throws SQLException, ClassNotFoundException {
+       List<SearchDao.Merchant> list = searchDao.getMerchants();
+        for (SearchDao.Merchant merchant : list) {
+            System.out.println(merchant);
+        }
     }
 
 

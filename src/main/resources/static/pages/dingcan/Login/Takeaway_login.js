@@ -29,8 +29,6 @@ $('#window_btn').on('click', function () {
         again();
         console.log(1111)
     }
-    console.log("###############")
-
     // 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost/login/L');
@@ -45,7 +43,35 @@ $('#window_btn').on('click', function () {
         }
     }
 });
+//失去焦点判断用户是否存在
+$("#username").blur(function () {
+    if (getUser()[0] !== getUser()[0].trim()) alert("输入不能有空格")
+  //  isRule()
+    $.ajax({
+        url: "http://localhost:8080/isSet/" + getUser()[0],
+        type: "GET",
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+})
 
+const isRule = () => {
+    if (getUser()[0] !== getUser()[0].trim()
+        || getUser()[1] !== getUser()[1].trim()
+        || getUser()[2] !== getUser()[2].trim()) alert("输入不能有空格")
+    if (getUser()[1] !== getUser()[2]) alert("密码不一致")
+
+
+}
+
+const getUser = () => {
+    return [$('#username').val().toString(), $('#password').val().toString()
+        , $("#passwordagain").val().toString(), $("#number").val().toString()]
+}
 
 // 判断第一次密码是不是和第二次相同的密码
 function again() {
@@ -57,7 +83,7 @@ function again() {
         // console.log('相同');
     } else {
         alert('请两次输入相同的密码');
-        window.location.href = window.location.href;
+        // window.location.href = window.location.href;
     }
 }
 
