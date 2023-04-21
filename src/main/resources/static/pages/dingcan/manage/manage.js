@@ -1,7 +1,8 @@
 // 这里是绑定商家名称那里退出登录和完善资料的模块
 // let M = null;
 
-
+let nn = sessionStorage.getItem("userM")
+let Merc = JSON.parse(nn)
 var logout = document.getElementById('logout');
 var user = document.getElementById('user');
 let flag = true;

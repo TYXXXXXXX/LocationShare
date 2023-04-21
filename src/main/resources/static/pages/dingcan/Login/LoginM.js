@@ -1,4 +1,3 @@
-
 const getUser = () => {
     return [$("#username1").val().toString(), $("#password1").val().toString()]
 }
@@ -17,8 +16,8 @@ $("#window_btn").click(function () {
         success: function (result) {
             if (result.flag) {
                 console.log(result)
-                Window.Merchants = result.data
-                console.log(Window.Merchants)
+                let mec = result.data
+                sessionStorage.setItem("userM", JSON.stringify(mec))
                 alert("即将跳转，请稍后...")
                 let timer = setTimeout(function () {
                     window.open("http://localhost:8080/static/pages/dingcan/Details/Takeaway_commodity.html", '_self')

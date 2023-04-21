@@ -76,7 +76,7 @@ $("#window_btn").click(function () {
                 if (result.flag) {
                     alert(result.msg)
                     let timer = setTimeout(function () {
-                        window.open("http://localhost:8080/static/pages/dingcan/Details/Takeaway_commodity.html", '_self')
+                        window.open("http://localhost:8080/static/pages/dingcan/Login/login_user.html", '_self')
                         clearTimeout(timer)
                     }, 1500)
                 }

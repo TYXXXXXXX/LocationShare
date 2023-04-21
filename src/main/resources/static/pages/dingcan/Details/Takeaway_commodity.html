@@ -103,7 +103,7 @@
 </html>
 <script>
     let user = sessionStorage.getItem("user")
-    console.log(user.toString())
+    console.log(JSON.parse(user))
         $(document).ready(function() {
             // 初始化自动完成组件
             $("#tab_search").autocomplete({
