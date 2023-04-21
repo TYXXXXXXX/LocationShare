@@ -214,16 +214,31 @@ add_submit.addEventListener('click', function () {
     var caipinPrice = $('#caipinPrice').val();
     var caipinText = $('#caipinText').val();
     const str = {
-        caipinName: caipinName,
-        caipinFile: caipinFile,
-        caipinPrice: caipinPrice,
-        caipinText: caipinText,
+        foodName: caipinName,
+        price: caipinPrice,
+        description: caipinText,
+        picture: caipinFile,
     }
     console.log(str);
     // 发送请求到服务端
-    $.POST('http://localhost:8080/user/ADD',str,function(){
-        getlist();
-    })
+    // 发送 Ajax 请求
+    $.ajax({
+        url: "http://localhost:8080/user/saveFood", // 请求的 url，通常是后端接口地址
+        type: "POST", // 请求的方法，根据业务需求选择 GET、POST、PUT、DELETE 等
+        contentType: "application/json;charset=utf-8", // 请求体的类型，指定为 JSON
+        data: JSON.stringify(str), // 将要发送的数据转换成 JSON 格式
+        success: function (result) {
+            // 请求成功的回调函数
+            if (result.flag) {
+                alert('添加成功')
+            }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            // 请求失败的回调函数
+            console.log(textStatus + ": " + errorThrown);
+        }
+    });
+
 })
 
 

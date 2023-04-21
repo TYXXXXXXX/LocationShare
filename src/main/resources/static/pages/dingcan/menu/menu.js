@@ -1,3 +1,5 @@
+
+
 // 加载菜品
 
 getlist();
@@ -10,7 +12,7 @@ function getlist() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status >= 200 && xhr.status <= 300) {
-                let ss = JSON.parse(xhr.responseText);
+                var ss = JSON.parse(xhr.responseText);
                 // console.log(ss);
                 // console.log(ss[0]);
                 //下面是 获取成功后的操作
@@ -48,14 +50,10 @@ function getlist() {
 }
 
 
-function fun(){
-    console.log(ii);
-}
-
 // 点击购物车显示已选菜
-var shop = document.getElementById('shop');
-var ico = document.getElementById('ico');
-var flag_shop = true;
+let shop = document.getElementById('shop');
+let ico = document.getElementById('ico');
+let flag_shop = true;
 ico.addEventListener('click', function () {
     // console.log(cuisine_name.innerHTML);
     if (flag_shop) {
@@ -68,16 +66,25 @@ ico.addEventListener('click', function () {
 
 })
 
-// 结算按钮
+// 提交订单按钮
 var jiesuan = document.getElementById('jiesuan');
+var flag1=true;
 jiesuan.addEventListener('click', function () {
     let shop = document.getElementById('shop');
     shop.style.display = "none";
     sum();
+    if(flag1){
+        alert('请在五分钟之内付款！');
+        jiesuan.value="付款"
+        flag1=false;
+    }else{
+        alert('付款成功！');
+    }
 
 
     // window.open('menu.html', '_self');
 })
+
 
 
 //把用户的下单的菜提交给服务端：
@@ -93,7 +100,7 @@ function sum(){
     let counts = {}
     let str = shop_ul.innerText;
     let strr=str.toString().trim().split(" ");
-   let  set = new Set(strr)
+    let  set = new Set(strr)
     let temp = []
     set.forEach(s => temp.push([0]))
     let k = 0
@@ -103,16 +110,22 @@ function sum(){
         } )
         k++
     })
-    console.log(temp)
-    // for(let i=0;i<strr.length;i++){
-    //     let index = strr[i]
-    //
-    //
-    // }
-    // console.log(strr);
+    console.log(temp);
+    console.log(set);
+
+    // 这里是拼接菜单
+    let xx="";
+    for(let x of set){
+    xx+=x+",";
+}
+    console.log(xx);
+    // xx是传给服务器的菜品名。
+
+
+
     strr=Object.assign({},strr);
-    console.log(strr);
-    let res = []
+    // console.log(strr);
+   let res = []
     let count = 0
     set.forEach(s => {
         res[count] = {
@@ -120,21 +133,17 @@ function sum(){
             quantity: temp[count++]
         }
     })
-    console.log(res)
-    // for (let i = 0; i < set.size; i++) {
-    //     res[i] = {
-    //         foodName: set.,
-    //         numbers: temp[i]
-    //     }
-    //     console.log(res[i])
-    // }
+    console.log(res);
+
 
     $.ajax({
         type:'POST',
-        url:'http://localhost:8080/',
+        url:'http://localhost:8080/user/',
         data:'res',
         success:function (){
-            alert('请在五分钟之内付款！');
+
         }
     })
 }
+
+

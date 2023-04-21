@@ -51,7 +51,7 @@
             </button>
         </div>
         <!-- 登陆成功后展示的用户名 -->
-        <div class=" col-md-1" id="tab_username" style="display: none">
+        <div class=" col-md-1" id="tab_username" >
             用户名
         </div>
 
@@ -102,8 +102,15 @@
 
 </html>
 <script>
+<!--    用户名更改-->
     let user = sessionStorage.getItem("user")
-    console.log(JSON.parse(user))
+    const str=JSON.parse(user);
+    console.log(str.userName);
+let userName=document.getElementById('tab_username');
+userName.innerHTML=str.userName;
+// console.log();
+
+
         $(document).ready(function() {
             // 初始化自动完成组件
             $("#tab_search").autocomplete({

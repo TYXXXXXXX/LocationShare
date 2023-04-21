@@ -45,6 +45,7 @@ public class UserController {
 
     @PostMapping("/saveFood")
     public R saveFood(@RequestBody Foods foods){
+        System.out.println(foods);
         if(searchFood.saveFood(foods)) {
             return new R(true,"添加成功");
         }else {

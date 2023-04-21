@@ -20,6 +20,7 @@
     <div class="container">
         <div id="cuisine">
             <h3>菜单：</h3>
+            <div id="userName">用户名</div>
             <span class="iconfont icon-31gouwuche" id="ico"></span>
             <div id="shop">
                 <ul id="shop_ul">
@@ -60,7 +61,18 @@
             <input class="btn btn-default " id="jiesuan" type="submit" value="提交订单">
         </div>
     </div>
+
     <script src="menu.js"></script>
 </body>
 
 </html>
+<script >
+    // 用户名
+    let user = sessionStorage.getItem("user")
+    const str=JSON.parse(user);
+    // console.log(str);
+    console.log(str.userName);
+   let Name=document.getElementById('userName')
+    // console.log(Name.innerHTML);
+   Name.innerHTML=str.userName;
+</script>
