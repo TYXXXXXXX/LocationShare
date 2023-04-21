@@ -137,7 +137,8 @@ var date = new Date();
 // console.log(today);
 // console.log("今日订单数量：" + amount.length);
 var sumamout = 0;
-for (var i = 0; i < amount.length; i++) {
+let i;
+for (i = 0; i < amount.length; i++) {
     sumamout += parseFloat(amount[i].innerHTML);
 }
 // console.log("今日到账：" + sumamout + "元");
@@ -166,7 +167,7 @@ function getlist() {
                 var rows = [];
                 $.each(ss.data,function(i,value){
                     console.log(value.foodName);
-                    rows.push("<tr><td>" + (i+1) + "</td><td>" + value.foodName + "</td> <td><img src=../images/food"+(i+1)+".jpg></td><td>" + value.price + "元</td> <td> " + value.description + "</td><td ><button type=" + "submit" + "className=" + "btn btn-default" + ">下架</button> " + "</td></tr>");
+                    rows.push("<tr><td>" + (i+1) + "</td><td>" + value.foodName + "</td> <td><img src=../images/food"+(i+1)+".jpg></td><td>" + value.price + "元</td> <td> " + value.description + "</td><td ><button onclick='funw()' type=" + "submit " + "class=" + "btn"+ ">下架</button> " + "</td></tr>");
                 })
                 $('#tbcuisine').empty().append(rows.join(""));
                }
@@ -178,34 +179,30 @@ getlist();
 
 
 // ///////////////这里是"我的菜品"里下架的点击事件
-var Delete = document.querySelectorAll('.delete');
-for (var i = 0; i < Delete.length; i++) {
-    Delete[i].addEventListener('click', function () {
-        // console.log(1);
-        // 向数据库发送删除请求
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8080/user/DELETE');
-        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhr.send();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status >= 200 && xhr.status <= 300) {
-                    alert('删除成功');
-                } else {
-                    alert('删除失败');
-                }
+funw=function(){
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/user/DE/1',
+        contentType: "application/json;charset=utf-8", // 请求体的类型，指定为 JSON
+        success: function (result) {
+            // 请求成功的回调函数
+            if (result.flag) {
+                alert('删除成功')
             }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            // 请求失败的回调函数
+            console.log(textStatus + ": " + errorThrown);
         }
-        getlist();
-        // 重新加载一遍
     })
+    getlist();
 }
 
 
 
 // ######################这里是添加菜单的模块（点击添加按钮，提交一份到数据库，一份到前端）
 var add_submit = document.getElementById('add_submit');
-var tbcuisine = document.getElementById('tbcuisine');
+
 
 add_submit.addEventListener('click', function () {
     getlist();
@@ -262,7 +259,7 @@ function getOrders() {
                 // console.log(ss[1]);
                 var rows = [];
                 $.each(ss,function(i,value){
-                    // console.log(value.foodName);
+                    console.log(value.foodName);
                     rows.push("<tr><td>" + (i+1) + "</td><td>" + value.foodName + "</td> <td><img src=" + "value.price" + "></td><td>" + value.price + "元</td> <td> " + value.description + "</td><td ><button type=" + "submit" + "className=" + "btn btn-default" + ">下架</button> " + "</td></tr>");
                 })
                 $('#tbcuisine').empty().append(rows.join(""));
