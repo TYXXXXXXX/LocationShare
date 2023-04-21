@@ -133,7 +133,7 @@ public class SearchFood {
                 pst.setString(1,foods.getFoodName());
                 pst.setBigDecimal(2, new BigDecimal(String.valueOf(foods.getPrice())));
                 pst.setString(3,foods.getDescription());
-                pst.setInt(4,foods.getMerchantId());
+                pst.setInt(4,1);
                 pst.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
                 pst.setString(6,foods.getPicture());
                 int count = pst.executeUpdate();

@@ -6,6 +6,7 @@ import com.example.foodordersystem.controller.utils.R;
 import com.example.foodordersystem.mapper.SearchDao;
 import com.example.foodordersystem.mapper.SearchFood;
 
+import com.example.foodordersystem.pojo.Foods;
 import com.example.foodordersystem.pojo.Orders;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,10 +43,14 @@ public class UserController {
         return new R(true,searchFood.searchFood(id));
     }
 
-//    @PostMapping("/saveFood")
-//    public R saveFood(@RequestBody Foods foods){
-//
-//    }
+    @PostMapping("/saveFood")
+    public R saveFood(@RequestBody Foods foods){
+        if(searchFood.saveFood(foods)) {
+            return new R(true,"添加成功");
+        }else {
+            return new R(true,"添加失败");
+        }
+    }
 
     @GetMapping("/Merchants")
     public R sendMerchants() throws SQLException, ClassNotFoundException {
