@@ -37,12 +37,12 @@ setting.addEventListener('click', function () {
 var Information_btn = document.getElementById('Information_btn');
 Information_btn.addEventListener('click', function () {
     // console.log(1);
-    var userName = $('#userName').val().trim();
-    var userImg = $('#userImg').val().trim();
-    var userNumber = $('#userNumber').val().trim();
-    var userEmail = $('#userEmail').val().trim();
-    var userPassword = $('#userPassword').val().trim();
-    var userAddress = $('#userAddress').val().trim();
+    let userName = $('#userName').val().trim();
+    let userImg = $('#userImg').val().trim();
+    let userNumber = $('#userNumber').val().trim();
+    let userEmail = $('#userEmail').val().trim();
+    let userPassword = $('#userPassword').val().trim();
+    let userAddress = $('#userAddress').val().trim();
     const str = {
         userName: userName,
         userImg: userImg,
@@ -53,7 +53,7 @@ Information_btn.addEventListener('click', function () {
     }
     console.log(str);
     // 发送请求
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open('get', 'http://locallhost/searchFood/1');
     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     xhr.send(JSON.stringify(str));
@@ -70,8 +70,8 @@ Information_btn.addEventListener('click', function () {
 
 //################让框可拖拽
 Iformation.addEventListener('mousedown', function (e) {
-    var x = e.pageX - Iformation.offsetLeft;
-    var y = e.pageY - Iformation.offsetTop;
+    let x = e.pageX - Iformation.offsetLeft;
+    let y = e.pageY - Iformation.offsetTop;
     //绑定移动事件
     document.addEventListener('mousemove', move)
     function move(e) {

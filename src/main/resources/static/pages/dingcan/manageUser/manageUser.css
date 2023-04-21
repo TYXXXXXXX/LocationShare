@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* @font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.woff2?t=1681712071512') format('woff2'),
+        url('iconfont.woff?t=1681712071512') format('woff'),
+        url('iconfont.ttf?t=1681712071512') format('truetype');
+} */
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:visited,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container .form-horizontal{
+    width: 50%;
+    margin-top: 50px;
+}
