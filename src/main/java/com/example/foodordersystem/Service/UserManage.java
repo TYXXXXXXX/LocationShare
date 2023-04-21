@@ -3,13 +3,33 @@ package com.example.foodordersystem.Service;
 import com.example.foodordersystem.mapper.utils.Connect;
 import com.example.foodordersystem.pojo.Merchants;
 import com.example.foodordersystem.pojo.User;
-import com.example.foodordersystem.pojo.Users;
 
 import java.sql.*;
 
-public class UserManageTyx {
+public class UserManage {
 
-    public UserManageTyx() {
+    public UserManage() {
+    }
+
+    public boolean saveAddress(String param,String name) throws SQLException, ClassNotFoundException {
+         Connection connection = Connect.getDriver();
+        String sql = "UPDATE users SET address = ? where user_name = ?";
+        PreparedStatement pst = connection.prepareStatement(sql);
+        pst.setString(1, param);
+        pst.setString(2, name);
+        int count = pst.executeUpdate();
+        if (count == 1) {
+            System.out.println("修改成功");
+            pst.close();
+            connection.close();
+            return true;
+        } else {
+            System.out.println("修改失败");
+            pst.close();
+            connection.close();
+            return false;
+        }
+
     }
 
 
@@ -25,10 +45,12 @@ public class UserManageTyx {
         if (count == 1) {
             System.out.println("修改成功");
             pst.close();
+            connection.close();
             return true;
         } else {
             System.out.println("修改失败");
             pst.close();
+            connection.close();
             return false;
         }
 
@@ -60,15 +82,18 @@ public class UserManageTyx {
                 System.out.println("成功");
                 pst2.close();
                 pst1.close();
+                connection.close();
                 return true;
             }else {
                 System.out.println("失败");
                 pst2.close();
                 pst1.close();
+                connection.close();
                 return false;
             }
         }
         pst1.close();
+        connection.close();
         return false;
     }
 
@@ -104,7 +129,6 @@ public class UserManageTyx {
         pst.close();
         connection.close();
         return merchants;
-
 
     }
 

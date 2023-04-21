@@ -9,10 +9,11 @@
     <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="levels" jdbcType="VARCHAR" property="levels" />
   </resultMap>
   <sql id="Base_Column_List">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    order_id, user_id, merchant_id, total_price, `status`, create_time
+    order_id, user_id, merchant_id, total_price, `status`, create_time, levels
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
@@ -32,9 +33,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into orders (user_id, merchant_id, total_price, 
-      `status`, create_time)
+      `status`, create_time, levels
+      )
     values (#{userId,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{levels,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.foodordersystem.pojo.Orders">
     <!-- @mbg.generated: generated automatically, do not modify! -->
@@ -58,6 +61,9 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="levels != null">
+        levels,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -74,6 +80,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levels != null">
+        #{levels,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -96,6 +105,9 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="levels != null">
+        levels = #{levels,jdbcType=VARCHAR},
+      </if>
     </set>
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
@@ -106,7 +118,8 @@
       merchant_id = #{merchantId,jdbcType=INTEGER},
       total_price = #{totalPrice,jdbcType=DECIMAL},
       `status` = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      levels = #{levels,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
 </mapper>

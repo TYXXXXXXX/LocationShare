@@ -1,6 +1,7 @@
 package com.example.foodordersystem;
 
 
+import com.example.foodordersystem.Service.UserManage;
 import com.example.foodordersystem.mapper.*;
 import com.example.foodordersystem.mapper.utils.Connect;
 import com.example.foodordersystem.mapper.utils.ImageUtils;
@@ -172,9 +173,10 @@ class LocationShareApplicationTests {
                 , "1325455", new Timestamp(System.currentTimeMillis()))));
     }
     private final UserLogin login = new UserLogin();
+    private final UserManage manage = new UserManage();
     @Test
     void seuse() throws Exception {
-        System.out.println(login.login("xxx","12345"));
+        System.out.println(manage.saveAddress("华新街","Tyx"));
     }
 
 

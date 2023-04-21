@@ -1,5 +1,7 @@
 package com.example.foodordersystem.Service;
 
+import com.example.foodordersystem.pojo.Orders;
+
 import java.math.BigDecimal;
 import java.sql.*;
 
@@ -9,15 +11,15 @@ public class OrderDao {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
-    public void addOder(int user_id, int merchant_id, BigDecimal total_price, int status, Timestamp create_time,String levels) throws SQLException {
+    public void addOder(Orders orders) throws SQLException {
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO orders(user_id, merchant_id, total_price,status,create_time,levels) VALUES(?, ?, ? ,? ,?,?)");
-            pstmt.setInt(1, user_id);
-            pstmt.setInt(2, merchant_id);
-            pstmt.setBigDecimal(3, total_price);
-            pstmt.setInt(4, status);
-            pstmt.setTimestamp(5, create_time);
-            pstmt.setString(6,levels);
+            pstmt.setInt(1, orders.getUserId());
+            pstmt.setInt(2, orders.getMerchantId());
+            pstmt.setBigDecimal(3, orders.getTotalPrice());
+            pstmt.setInt(4, orders.getStatus());
+            pstmt.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
+            pstmt.setString(6,orders.getLevels());
             pstmt.executeUpdate();
             pstmt.close();
 

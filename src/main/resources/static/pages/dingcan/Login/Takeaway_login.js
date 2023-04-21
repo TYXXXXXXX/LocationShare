@@ -1,48 +1,4 @@
-// 获取元素
-// let username = document.getElementById('username');
-// let password = document.getElementById('password');
-// let passwordagain = document.getElementById('passwordagain');
-// let number = document.getElementById('passwordagain');
-// let btn = document.querySelector('#window_btn');
-// import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
 
-// const { json } = require("express");
-// const express = require("express");
-
-// $('#window_btn').on('click', function () {
-//     var userName = $('#username').val().trim().toString();
-//     var password = $('#password').val().trim().toString();
-//     var passwordAgain = $('#passwordagain').val().trim().toString();
-//     var number = $('#number').val().trim().toString();
-//     const str = {
-//         userName: userName,
-//         password: password,
-//         passwordAgain: passwordAgain,
-//         number: number,
-//     }
-//     console.log(str.name);
-//     if (userName.length <= 0 || password.length <= 0 || passwordAgain.length <= 0 || number.length <= 0) {
-//         alert('请输入完整信息');
-//         // window.location.href = window.location.href;
-//     } else {
-//         again();
-//         console.log(1111)
-//     }
-//     //
-//     var xhr = new XMLHttpRequest();
-//     xhr.open('POST', 'http://localhost/login/L');
-//     console.log("##############")
-//     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-//     xhr.send(JSON.stringify(str));
-//     xhr.onreadystatechange = function () {
-//         if (xhr.readyState === 4) {
-//             if (xhr.status === 200) {
-//                 console.log(xhr.responseText);
-//             }
-//         }
-//     }
-// });
 //失去焦点判断用户是否存在
 let isSet = false
 $("#username").blur(function () {
@@ -108,7 +64,6 @@ const getUser = () => {
     return [$('#username').val().toString(), $('#password').val().toString()
         , $("#passwordagain").val().toString(), $("#number").val().toString()]
 }
-console.log(window.hu[0])
 //注册
 // const regis = () => {
 //     isRule()
@@ -134,7 +89,6 @@ $("#window_btn").click(function () {
     } else alert("密码不一致")
 
 })
-console.log("==============>"+hu[0])
 //}
 // 判断第一次密码是不是和第二次相同的密码
 function again() {

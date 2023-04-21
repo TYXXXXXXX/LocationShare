@@ -1,5 +1,7 @@
 package com.example.foodordersystem.controller;
 
+import com.example.foodordersystem.Service.UserManage;
+import com.example.foodordersystem.Service.UserManage;
 import com.example.foodordersystem.controller.utils.R;
 import com.example.foodordersystem.mapper.SearchDao;
 import com.example.foodordersystem.mapper.SearchFood;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class UserController {
     private final SearchDao searchDao = new SearchDao();
     private final SearchFood searchFood = new SearchFood();
+    private final UserManage userManage = new UserManage();
 
     public UserController() throws SQLException, ClassNotFoundException {
     }
@@ -74,6 +77,14 @@ public class UserController {
         }
         return "success";
     }
+
+    @GetMapping("address/{a}/{n}")
+    public R saveAddress(@PathVariable String a,@PathVariable String n) throws SQLException, ClassNotFoundException {
+        if(userManage.saveAddress(a,n)){
+            return new R(true,userManage.selectOne(n));
+        }else return new R(false,"添加失败");
+    }
+
 
 
 }

@@ -1,6 +1,6 @@
 package com.example.foodordersystem.controller;
 
-import com.example.foodordersystem.Service.UserManageTyx;
+import com.example.foodordersystem.Service.UserManage;
 import com.example.foodordersystem.controller.utils.R;
 import com.example.foodordersystem.mapper.UserLogin;
 import com.example.foodordersystem.mapper.UserRegis;
@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @RestController
 @RequestMapping("/login")
 public class LoginController {
-    private final UserManageTyx userManage = new UserManageTyx();
+    private final UserManage userManage = new UserManage();
      private final UserLogin login = new UserLogin();
      private final UserRegis regis = new UserRegis();
 
@@ -24,6 +24,8 @@ public class LoginController {
 
     @PostMapping("/user")
     public R login(@RequestBody User user) throws Exception {
+        System.out.println(user.toString());
+        System.out.println("########################");
         if(login.login(user.getUserName(),user.getPassword())){
             return new R(true,userManage.selectOne(user.getUserName()));
         }

@@ -28,7 +28,6 @@
 
 </html>
 <script>
-    let User = null
     const getUser = () => {
         return [$("#username1").val().toString(), $("#password1").val().toString()]
     }
@@ -46,7 +45,12 @@
             success: function (result) {
                 if (result.flag) {
                     console.log(result)
-                    User = result.data
+                    let User = result.data
+
+                    console.log(JSON.stringify(User))
+                    console.log("------------->"+User.toString())
+                    sessionStorage.setItem("user", JSON.stringify(User))
+                    sessionStorage.getItem("user")
                     alert("即将跳转，请稍后...")
                     let timer = setTimeout(function () {
                         window.open("http://localhost:8080/static/pages/dingcan/Details/Takeaway_commodity.html", '_self')
